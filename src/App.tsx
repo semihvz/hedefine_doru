@@ -8,7 +8,7 @@ import { QuestionBankView } from './components/QuestionBankView';
 import { DerslerView } from './components/DerslerView';
 import { DenemelerView } from './components/DenemelerView';
 import { HabitsTrackerView } from './components/HabitsTrackerView';
-import { DailyPlannerView } from './components/DailyPlannerView';
+import { TodoListView } from './components/TodoListView';
 import { ToastContainer } from './components/ToastContainer';
 import { AskAiSelectionTooltip } from './components/AskAiSelectionTooltip';
 
@@ -40,7 +40,7 @@ const MainContent: React.FC = () => {
           />
         )}
         {activeTab === 'aliskanliklar' && <HabitsTrackerView />}
-        {activeTab === 'todolist' && <DailyPlannerView />}
+        {activeTab === 'todolist' && <TodoListView />}
         {activeTab === 'sessions' && <SessionsView />}
         {activeTab === 'admin' && <AdminPanel />}
       </main>
