@@ -1,298 +1,70 @@
-import { useState, useEffect } from 'react';
-import { Header } from './components/Header';
-import { EmbeddedQuestionBankView } from './components/EmbeddedQuestionBankView';
-import { FlashcardTopicSelector } from './components/FlashcardTopicSelector';
-import { FlashcardDeckView } from './components/FlashcardDeckView';
-import { DailyJournalView } from './components/DailyJournalView';
-import { DailyPlannerView } from './components/DailyPlannerView';
-import { IndustrialEngineeringView } from './components/IndustrialEngineeringView';
-import { TradeMarketStructureView } from './components/TradeMarketStructureView';
-import { SettingsModal } from './components/SettingsModal';
-import { SavedQuestionsModal } from './components/SavedQuestionsModal';
-import { StatsDashboard } from './components/StatsDashboard';
+import React, { useState } from 'react';
+import { AuthProvider } from './context/AuthContext';
+import { Navbar } from './components/Navbar';
 import { AuthModal } from './components/AuthModal';
-import { AuthGuardWall } from './components/AuthGuardWall';
-import { YksCountdownTimer } from './components/YksCountdownTimer';
+import { DashboardView } from './components/DashboardView';
+import { SessionsView } from './components/SessionsView';
+import { AdminPanel } from './components/AdminPanel';
+import { ArchitectureView } from './components/ArchitectureView';
+import { QuestionBankView } from './components/QuestionBankView';
+import { DerslerView } from './components/DerslerView';
+import { DenemelerView } from './components/DenemelerView';
+import { ToastContainer } from './components/ToastContainer';
 
-import type { Question, AppSettings, UserStats, SavedQuestionItem, Flashcard, SavedFlashcardItem, UserProfile } from './types/quiz';
-import { getPreloadedFlashcards, getPreloadedQuestions } from './services/aiService';
-import { 
-  loadSettings, 
-  saveSettings, 
-  loadUserStats, 
-  recordAnswerResult, 
-  loadSavedQuestionsFromDB, 
-  toggleSaveQuestionToDB,
-  loadSavedFlashcardsFromDB,
-  toggleSaveFlashcardToDB,
-  loadActiveUser,
-  logoutUserAccount
-} from './services/storageService';
-import { audioService } from './services/audioService';
-
-export function App() {
-  const [settings, setSettings] = useState<AppSettings>(loadSettings);
-  const [stats, setStats] = useState<UserStats>(loadUserStats);
-  const [currentUser, setCurrentUser] = useState<UserProfile | null>(loadActiveUser);
-  const [savedQuestions, setSavedQuestions] = useState<SavedQuestionItem[]>([]);
-  const [savedFlashcards, setSavedFlashcards] = useState<SavedFlashcardItem[]>([]);
-
-  // Modes: 'embedded-bank' | 'flashcards' | 'journal' | 'planner' | 'industrial-engineering' | 'trade'
-  const [activeMode, setActiveMode] = useState<'embedded-bank' | 'flashcards' | 'journal' | 'planner' | 'industrial-engineering' | 'trade'>('embedded-bank');
-
-  // Embedded Question Bank State
-  const [embeddedQuestions] = useState<Question[]>(() => getPreloadedQuestions());
-  
-  // Flashcards State
-  const [currentDeck, setCurrentDeck] = useState<Flashcard[] | null>(null);
-
-  const [saveToast, setSaveToast] = useState<string | null>(null);
-
-  // Modals
-  const [showSettings, setShowSettings] = useState<boolean>(false);
-  const [showBookmarks, setShowBookmarks] = useState<boolean>(false);
-  const [showStats, setShowStats] = useState<boolean>(false);
-  const [showAuthModal, setShowAuthModal] = useState<boolean>(false);
-
-  // Sync theme attribute & load DB saved items
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', settings.theme);
-    loadSavedQuestionsFromDB().then((items) => setSavedQuestions(items));
-    loadSavedFlashcardsFromDB().then((items) => setSavedFlashcards(items));
-  }, [settings.theme]);
-
-  // Select preloaded Flashcard Deck
-  const handleSelectFlashcardDeck = (topic: string) => {
-    audioService.playClickSound(settings.soundEnabled);
-    const deck = getPreloadedFlashcards(topic, 5);
-    setCurrentDeck(deck);
-  };
-
-  // Handle user submitting answer in Quiz mode
-  const handleAnswerSubmit = (question: Question, optionId: string, solveTimeSeconds: number = 0) => {
-    const isCorrect = optionId === question.correctOptionId;
-
-    if (isCorrect) {
-      audioService.playCorrectSound(settings.soundEnabled);
-      audioService.triggerHaptic('success');
-    } else {
-      audioService.playIncorrectSound(settings.soundEnabled);
-      audioService.triggerHaptic('warning');
-    }
-
-    const updatedStats = recordAnswerResult(question.topic, isCorrect, solveTimeSeconds);
-    setStats(updatedStats);
-  };
-
-  // DB Save / Bookmark toggle for Questions
-  const handleToggleSaveQuestion = async (q: Question, ansId: string) => {
-    const isCorrect = ansId === q.correctOptionId;
-
-    const item: SavedQuestionItem = {
-      question: q,
-      userAnswerId: ansId,
-      savedAt: Date.now(),
-      wasCorrect: isCorrect
-    };
-
-    const { isSaved, updatedList } = await toggleSaveQuestionToDB(item);
-    setSavedQuestions(updatedList);
-
-    setSaveToast(isSaved ? 'Soru veritabanına kaydedildi! 💾' : 'Soru kütüphaneden çıkarıldı.');
-    setTimeout(() => setSaveToast(null), 2500);
-  };
-
-  // DB Save / Bookmark toggle for Flashcards
-  const handleToggleSaveFlashcard = async (card: Flashcard) => {
-    const { isSaved, updatedList } = await toggleSaveFlashcardToDB(card);
-    setSavedFlashcards(updatedList);
-
-    setSaveToast(isSaved ? 'Çalışma kartı veritabanına kaydedildi! 🎴' : 'Kart kütüphaneden çıkarıldı.');
-    setTimeout(() => setSaveToast(null), 2500);
-  };
-
-  const isCurrentQuestionSaved = (qId: string) => {
-    return savedQuestions.some(item => item.question.id === qId);
-  };
-
-  const isFlashcardSaved = (cardId: string) => {
-    return savedFlashcards.some(item => item.card.id === cardId);
-  };
-
-  const handleUpdateSettings = (newSettings: AppSettings) => {
-    setSettings(newSettings);
-    saveSettings(newSettings);
-  };
-
-  const handleReviewSavedQuestion = (_item: SavedQuestionItem) => {
-    setActiveMode('embedded-bank');
-  };
-
-  const handleRemoveSavedQuestionItem = async (item: SavedQuestionItem) => {
-    const { updatedList } = await toggleSaveQuestionToDB(item);
-    setSavedQuestions(updatedList);
-  };
-
-  const handleRemoveSavedFlashcardItem = async (item: SavedFlashcardItem) => {
-    const { updatedList } = await toggleSaveFlashcardToDB(item.card);
-    setSavedFlashcards(updatedList);
-  };
+const MainContent: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="mobile-app-wrapper">
-      <div className="mobile-phone-shell">
-        {/* Realme C55 Mini Capsule Status Bar */}
-        <div className="mobile-notch-bar realme-c55-bar">
-          <span className="notch-time">10:15</span>
-          <div className="mini-capsule-container" title="Realme C55 Mini Capsule">
-            <div className="camera-punch-hole"></div>
-            <div className="mini-capsule-badge">
-              <span className="capsule-text">⚡ 90Hz • 100%</span>
-            </div>
-          </div>
-          <div className="notch-icons">
-            <span className="network-text">4G+</span>
-            <span className="battery-level">100%</span>
-          </div>
-        </div>
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+      <Navbar
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        onOpenAuthModal={() => setIsAuthModalOpen(true)}
+      />
 
-        <Header
-          stats={stats}
-          settings={settings}
-          currentUser={currentUser}
-          activeMode={activeMode}
-          onSwitchMode={(mode) => {
-            audioService.playClickSound(settings.soundEnabled);
-            setActiveMode(mode);
-          }}
-          onUpdateSettings={handleUpdateSettings}
-          onOpenSettings={() => setShowSettings(true)}
-          onOpenBookmarks={() => setShowBookmarks(true)}
-          onOpenStats={() => setShowStats(true)}
-          onOpenAuth={() => setShowAuthModal(true)}
-          onLogout={() => {
-            logoutUserAccount();
-            setCurrentUser(null);
-            setSaveToast('Logged out successfully.');
-            setTimeout(() => setSaveToast(null), 2500);
-          }}
-        />
-
-        {/* Database Save Notification Toast */}
-        {saveToast && (
-          <div className="toast-notification">
-            <span>{saveToast}</span>
-          </div>
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 pb-20 md:pb-8">
+        {activeTab === 'dashboard' && (
+          <DashboardView onOpenAuthModal={() => setIsAuthModalOpen(true)} />
         )}
-
-        <main className="main-container">
-          {!currentUser ? (
-            <AuthGuardWall
-              onOpenAuth={() => setShowAuthModal(true)}
-              onLoginSuccess={(user) => {
-                setCurrentUser(user);
-                setSaveToast(`Welcome, ${user.name}! 👋`);
-                setTimeout(() => setSaveToast(null), 2500);
-              }}
-            />
-          ) : (
-            <>
-              {/* 2041 Death Countdown Timer */}
-              <YksCountdownTimer />
-
-              {/* 2. AREA: EMBEDDED QUESTION BANK */}
-              {activeMode === 'embedded-bank' && (
-                <EmbeddedQuestionBankView
-                  questions={embeddedQuestions}
-                  onAnswerSubmit={handleAnswerSubmit}
-                  onSaveQuestion={handleToggleSaveQuestion}
-                  isQuestionSaved={isCurrentQuestionSaved}
-                />
-              )}
-
-              {/* 3. AREA: FLASHCARD SYSTEM */}
-              {activeMode === 'flashcards' && (
-                <>
-                  {!currentDeck && (
-                    <FlashcardTopicSelector
-                      onSelectDeck={handleSelectFlashcardDeck}
-                    />
-                  )}
-
-                  {currentDeck && (
-                    <FlashcardDeckView
-                      cards={currentDeck}
-                      onSaveCard={handleToggleSaveFlashcard}
-                      isCardSaved={isFlashcardSaved}
-                      onNewDeckRequest={() => setCurrentDeck(null)}
-                    />
-                  )}
-                </>
-              )}
-
-              {/* 4. AREA: DAILY JOURNAL SYSTEM */}
-              {activeMode === 'journal' && (
-                <DailyJournalView />
-              )}
-
-              {/* 5. AREA: DAILY PLANNER & TO-DO TRACKER */}
-              {activeMode === 'planner' && (
-                <DailyPlannerView />
-              )}
-
-              {/* 6. AREA: INDUSTRIAL ENGINEERING & MRP */}
-              {activeMode === 'industrial-engineering' && (
-                <IndustrialEngineeringView />
-              )}
-
-              {/* 7. AREA: FINANCIAL TRADING & MARKET STRUCTURE */}
-              {activeMode === 'trade' && (
-                <TradeMarketStructureView />
-              )}
-            </>
-          )}
-        </main>
-
-        {/* Modals inside mobile frame */}
-        {showSettings && (
-          <SettingsModal
-            settings={settings}
-            onSave={handleUpdateSettings}
-            onClose={() => setShowSettings(false)}
+        {activeTab === 'quiz' && (
+          <QuestionBankView onOpenAuthModal={() => setIsAuthModalOpen(true)} />
+        )}
+        {activeTab === 'denemeler' && (
+          <DenemelerView
+            onOpenAuthModal={() => setIsAuthModalOpen(true)}
           />
         )}
-
-        {showBookmarks && (
-          <SavedQuestionsModal
-            questionItems={savedQuestions}
-            flashcardItems={savedFlashcards}
-            onRemoveQuestionItem={handleRemoveSavedQuestionItem}
-            onRemoveFlashcardItem={handleRemoveSavedFlashcardItem}
-            onSelectQuestionForReview={handleReviewSavedQuestion}
-            onClose={() => setShowBookmarks(false)}
+        {activeTab === 'dersler' && (
+          <DerslerView
+            onNavigateToQuiz={(_category) => setActiveTab('quiz')}
+            onOpenAuthModal={() => setIsAuthModalOpen(true)}
           />
         )}
+        {activeTab === 'sessions' && <SessionsView />}
+        {activeTab === 'admin' && <AdminPanel />}
+        {activeTab === 'architecture' && <ArchitectureView />}
+      </main>
 
-        {showStats && (
-          <StatsDashboard
-            stats={stats}
-            onClose={() => setShowStats(false)}
-          />
-        )}
+      <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
+        <p>Hedefine Doğru • YKS Deneme Sınavları & Güvenli Akıllı Öğrenme Platformu © 2026</p>
+      </footer>
 
-        {showAuthModal && (
-          <AuthModal
-            onLoginSuccess={(user) => {
-              setCurrentUser(user);
-              setShowAuthModal(false);
-              setSaveToast(`Welcome, ${user.name}! 👋`);
-              setTimeout(() => setSaveToast(null), 2500);
-            }}
-            onClose={() => setShowAuthModal(false)}
-          />
-        )}
-      </div>
+      <AuthModal
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
+
+      <ToastContainer />
     </div>
+  );
+};
+
+export function App() {
+  return (
+    <AuthProvider>
+      <MainContent />
+    </AuthProvider>
   );
 }
 

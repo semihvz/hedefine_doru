@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">OPTIMIZATION LIFE</string>
-    <string name="title_activity_main">OPTIMIZATION LIFE</string>
-    <string name="package_name">com.mindpulse.learningapp</string>
-    <string name="custom_url_scheme">com.mindpulse.learningapp</string>
-</resources>

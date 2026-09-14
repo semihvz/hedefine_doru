@@ -11,14 +11,14 @@ export const FormattedMathText: React.FC<FormattedMathTextProps> = ({ text, clas
   if (!text) return null;
 
   const renderContent = () => {
-    // Regex matching \(...\) or \[...\] or \frac{...}{...} or \log(...) expressions
-    const mathRegex = /(\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]|\\frac\{[^}]+\}\{[^}]+\}(?:\s*=\s*\d+)?|\\log\([^)]+\)(?:\s*[-+*/]\s*\\log\([^)]+\))*(?:\s*=\s*[^.\n,]+)?|\\Rightarrow|\\cdot|\\neq|\\approx)/g;
+    // Regex matching \(...\) or \[...\] or LaTeX expressions
+    const mathRegex = /(\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]|\\log_{[^{}\s]+}(?:\([^)]+\))?|\\log(?:\([^)]+\))?|\\frac\{[^}]+\}\{[^}]+\}|\\sqrt(?:\[[^\]]+\])?\{[^}]+\}|\\iff|\\Rightarrow|\\cdot|\\neq|\\approx)/g;
 
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
     let match: RegExpExecArray | null;
 
-    const containsMath = text.includes('\\(') || text.includes('\\[') || text.includes('\\frac') || text.includes('\\log') || text.includes('\\Rightarrow') || text.includes('\\cdot');
+    const containsMath = text.includes('\\(') || text.includes('\\[') || text.includes('\\frac') || text.includes('\\log') || text.includes('\\iff') || text.includes('\\Rightarrow') || text.includes('\\sqrt') || text.includes('\\cdot');
 
     if (containsMath) {
       while ((match = mathRegex.exec(text)) !== null) {
@@ -42,7 +42,7 @@ export const FormattedMathText: React.FC<FormattedMathTextProps> = ({ text, clas
           parts.push(
             <span
               key={`m_${match.index}`}
-              className="katex-inline-math"
+              className="katex-inline-math text-indigo-300 font-mono px-0.5"
               dangerouslySetInnerHTML={{ __html: html }}
             />
           );

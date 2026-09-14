@@ -24,7 +24,7 @@ export const AuthGuardWall: React.FC<AuthGuardWallProps> = ({ onOpenAuth, onLogi
 
         <h2>🔒 Log In to Access Content</h2>
         <p className="guard-desc">
-          You need to sign in to access the <strong>260+ Embedded Question Bank</strong> (Mathematics, Oxford English & Advanced SQL), 3D Flashcards, and Daily Journal in OPTIMIZATION LIFE.
+          You need to sign in to access the <strong>260+ Embedded Question Bank</strong> (Mathematics, Oxford English & Advanced SQL), 3D Flashcards, and Daily Journal in LEARN.
         </p>
 
         {/* Feature Highlights Grid */}

@@ -94,7 +94,8 @@ export const StatsDashboard: React.FC<StatsDashboardProps> = ({ stats, onClose }
             </div>
           ) : (
             <div className="mastery-list">
-              {Object.entries(stats.topicMastery).map(([topic, data]) => {
+              {Object.entries(stats.topicMastery).map(([topic, dataVal]) => {
+                const data = dataVal as { correct: number; total: number };
                 const perc = Math.round((data.correct / data.total) * 100);
                 return (
                   <div key={topic} className="mastery-item">

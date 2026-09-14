@@ -107,7 +107,7 @@ export const ExplanationCard: React.FC<ExplanationCardProps> = ({
                 <div key={optId} className="wrong-opt-item">
                   <span className="wrong-opt-badge">Option {optId}</span>
                   <span className="wrong-opt-text">
-                    <FormattedMathText text={text} />
+                    <FormattedMathText text={String(text || '')} />
                   </span>
                 </div>
               ))}
@@ -214,7 +214,7 @@ export const ExplanationCard: React.FC<ExplanationCardProps> = ({
                   {Object.entries(question.explanation.whyOthersIncorrect || {}).map(([optId, text]) => (
                     <div key={optId} className="pitfall-card">
                       <div className="pitfall-badge">Option {optId} Distractor Trap</div>
-                      <p>{text}</p>
+                      <p>{String(text || '')}</p>
                     </div>
                   ))}
                 </div>

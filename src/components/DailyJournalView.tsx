@@ -325,7 +325,7 @@ export const DailyJournalView: React.FC = () => {
     const q = searchQuery.toLowerCase();
     return (
       item.title.toLowerCase().includes(q) ||
-      item.content.toLowerCase().includes(q) ||
+      (item.content || '').toLowerCase().includes(q) ||
       (item.tags && item.tags.some(t => t.toLowerCase().includes(q)))
     );
   });

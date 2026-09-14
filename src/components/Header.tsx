@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
               <Brain className="brain-svg" />
             </div>
             <div className="brand-text">
-              <h1 className="title">OPTIMIZATION<span className="ai-badge">AI</span></h1>
+              <h1 className="title">LEARN<span className="ai-badge">AI</span></h1>
             </div>
           </div>
 
@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <div className="logo-icon">
                   <Brain className="brain-svg" />
                 </div>
-                <span className="drawer-title">OPTIMIZATION.AI</span>
+                <span className="drawer-title">LEARN.AI</span>
               </div>
               <button 
                 className="drawer-close-btn"
@@ -267,7 +267,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Drawer Footer */}
             <div className="drawer-footer">
-              <span>Optimization.AI v2.5 • Full Screen View Mode</span>
+              <span>Learn.AI v2.5 • Full Screen View Mode</span>
             </div>
 
           </div>

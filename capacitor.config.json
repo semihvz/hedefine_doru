@@ -1,9 +1,0 @@
-{
-  "appId": "com.mindpulse.learningapp",
-  "appName": "OPTIMIZATION LIFE",
-  "webDir": "dist",
-  "bundledWebRuntime": false,
-  "server": {
-    "androidScheme": "https"
-  }
-}

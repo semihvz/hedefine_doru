@@ -99,7 +99,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
       {/* 5 Choices Grid */}
       <div className="options-list">
-        {question.options.map((option) => {
+        {question.options.map((option, index) => {
           const isSelected = selectedId === option.id;
           const isSubmitted = answeredOptionId !== null;
           const isCorrect = option.id === question.correctOptionId;
@@ -120,13 +120,13 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
           return (
             <div
-              key={option.id}
+              key={option.id || index}
               className={`option-card ${optionStateClass}`}
-              onClick={() => handleOptionClick(option.id)}
+              onClick={() => handleOptionClick(option.id || option.key || '')}
             >
-              <div className="option-badge">{option.id}</div>
+              <div className="option-badge">{option.id || option.key || String.fromCharCode(65 + index)}</div>
               <div className="option-text">
-                <FormattedMathText text={option.text} />
+                <FormattedMathText text={option.text || option.option_text || ''} />
               </div>
               <div className="option-status-icon">
                 {isSubmitted && isCorrect && <CheckCircle2 className="correct-icon" />}
