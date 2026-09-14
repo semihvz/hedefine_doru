@@ -226,61 +226,61 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           {tab === 'register' && (
             <form onSubmit={handleRegister} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Ad Soyad</label>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">Ad Soyad</label>
                 <div className="relative">
-                  <UserIcon className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <UserIcon className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
                   <input
                     type="text"
                     required
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Ahmet Yılmaz"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-500 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">E-Posta Adresi</label>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">E-Posta Adresi</label>
                 <div className="relative">
-                  <Mail className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <Mail className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ornek@domain.com"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-500 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Şifre (Min 8 Karakter)</label>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">Şifre (Min 8 Karakter)</label>
                 <div className="relative">
-                  <Lock className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <Lock className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
                   <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-500 transition-colors"
                   />
                 </div>
 
                 {/* Password strength meter */}
                 {password.length > 0 && (
                   <div className="mt-2">
-                    <div className="flex gap-1 h-1.5 rounded-full overflow-hidden bg-slate-800">
+                    <div className="flex gap-1 h-1.5 rounded-none overflow-hidden bg-zinc-800">
                       <div className={`h-full transition-all duration-300 ${
                         passwordScore === 1 ? 'w-1/4 bg-rose-500' :
                         passwordScore === 2 ? 'w-2/4 bg-amber-500' :
-                        passwordScore === 3 ? 'w-3/4 bg-indigo-500' :
+                        passwordScore === 3 ? 'w-3/4 bg-zinc-400' :
                         passwordScore === 4 ? 'w-full bg-emerald-500' : 'w-0'
                       }`} />
                     </div>
-                    <span className="text-[10px] text-slate-400 mt-1 block">
+                    <span className="text-[10px] font-mono text-zinc-400 mt-1 block uppercase">
                       Güvenlik: {
                         passwordScore <= 1 ? 'Zayıf' :
                         passwordScore === 2 ? 'Orta' :
@@ -292,15 +292,15 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">Kullanıcı Rolü</label>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1">Kullanıcı Rolü</label>
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     onClick={() => setRole('USER')}
-                    className={`py-2 rounded-xl text-xs font-semibold border transition-all ${
+                    className={`py-2 rounded-sm text-xs font-mono font-bold uppercase tracking-wider border transition-all ${
                       role === 'USER'
-                        ? 'bg-indigo-600/30 border-indigo-500 text-indigo-200'
-                        : 'bg-slate-950/40 border-slate-800 text-slate-400'
+                        ? 'bg-zinc-800 border-zinc-500 text-white'
+                        : 'bg-zinc-950 border-zinc-800 text-zinc-400'
                     }`}
                   >
                     👤 Standart Kullanıcı
@@ -308,10 +308,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setRole('ADMIN')}
-                    className={`py-2 rounded-xl text-xs font-semibold border transition-all ${
+                    className={`py-2 rounded-sm text-xs font-mono font-bold uppercase tracking-wider border transition-all ${
                       role === 'ADMIN'
-                        ? 'bg-amber-600/30 border-amber-500 text-amber-200'
-                        : 'bg-slate-950/40 border-slate-800 text-slate-400'
+                        ? 'bg-zinc-800 border-zinc-500 text-white'
+                        : 'bg-zinc-950 border-zinc-800 text-zinc-400'
                     }`}
                   >
                     👑 Admin Yöneticisi
@@ -322,7 +322,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 mt-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 mt-2 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 font-bold text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2"
               >
                 {submitting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
                 <span>Hesabı Oluştur</span>
@@ -333,32 +333,32 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           {/* FORGOT PASSWORD FORM */}
           {tab === 'forgot' && (
             <form onSubmit={handleForgot} className="space-y-4">
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs text-zinc-400 leading-relaxed">
                 Kayıtlı e-posta adresinizi girin. Güvenli sıfırlama jetonu oluşturularak şifrenizi yenilemenize olanak sağlanacaktır.
               </p>
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">E-Posta Adresi</label>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1.5">E-Posta Adresi</label>
                 <div className="relative">
-                  <Mail className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <Mail className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ornek@domain.com"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-500 transition-colors"
                   />
                 </div>
               </div>
 
               {demoTokenGenerated && (
-                <div className="p-3 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 text-xs space-y-2">
-                  <p className="font-semibold">✅ Demo Sıfırlama Jetonu Oluşturuldu:</p>
-                  <p className="font-mono bg-slate-950 p-2 rounded-xl break-all text-[11px] select-all border border-emerald-900">{demoTokenGenerated}</p>
+                <div className="p-3 rounded-sm bg-zinc-900 border border-zinc-700 text-zinc-200 text-xs space-y-2">
+                  <p className="font-mono font-bold uppercase text-[11px] text-zinc-300">✅ Sıfırlama Jetonu Oluşturuldu:</p>
+                  <p className="font-mono bg-zinc-950 p-2 rounded-sm break-all text-[11px] select-all border border-zinc-800 text-zinc-300">{demoTokenGenerated}</p>
                   <button
                     type="button"
                     onClick={() => setTab('reset')}
-                    className="w-full py-1.5 rounded-xl bg-emerald-600 text-white font-semibold text-xs transition-colors hover:bg-emerald-500"
+                    className="w-full py-1.5 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 font-mono font-bold text-xs uppercase transition-colors"
                   >
                     Şifre Sıfırlama Adımına Git →
                   </button>
@@ -368,7 +368,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 font-bold text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2"
               >
                 {submitting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Mail className="w-4 h-4" />}
                 <span>Sıfırlama Bağlantısı Gönder</span>
@@ -380,31 +380,31 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           {tab === 'reset' && (
             <form onSubmit={handleReset} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Sıfırlama Jetonu (Reset Token)</label>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1.5">Sıfırlama Jetonu (Reset Token)</label>
                 <div className="relative">
-                  <Shield className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <Shield className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
                   <input
                     type="text"
                     required
                     value={resetToken}
                     onChange={(e) => setResetToken(e.target.value)}
                     placeholder="Sıfırlama Jetonu"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors font-mono"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-500 transition-colors font-mono"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">Yeni Şifre</label>
+                <label className="block text-xs font-semibold text-zinc-300 mb-1.5">Yeni Şifre</label>
                 <div className="relative">
-                  <Lock className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <Lock className="absolute left-3.5 top-3 w-4 h-4 text-zinc-500" />
                   <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-500 transition-colors"
                   />
                 </div>
               </div>
@@ -412,7 +412,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 font-bold text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2"
               >
                 {submitting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
                 <span>Yeni Şifreyi Kaydet</span>

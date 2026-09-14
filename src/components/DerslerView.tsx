@@ -884,26 +884,26 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
       <div className="space-y-8 animate-fade-in pb-16">
         
         {/* Navigation Breadcrumb Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-zinc-800">
           <button
             onClick={() => setSelectedSubject(null)}
-            className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-all w-fit shadow-md"
+            className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-sm bg-zinc-900 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white text-xs font-mono font-bold uppercase transition-all w-fit shadow-md"
           >
-            <ArrowLeft className="w-4 h-4 text-indigo-400" />
+            <ArrowLeft className="w-4 h-4 text-zinc-400" />
             <span>← Tüm Derslere Dön</span>
           </button>
 
-          <div className="flex items-center gap-2 text-xs text-slate-400">
+          <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
             <span>Dersler</span>
             <span>/</span>
-            <span className="font-semibold text-slate-300">{selectedSubject.type}</span>
+            <span className="font-semibold text-zinc-300">{selectedSubject.type}</span>
             <span>/</span>
-            <span className="font-bold text-indigo-400">{selectedSubject.name}</span>
+            <span className="font-bold text-white">{selectedSubject.name}</span>
           </div>
 
           <button
             onClick={() => onNavigateToQuiz(selectedSubject.category)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-bold shadow-lg shadow-indigo-500/25 transition-all w-fit"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 text-xs font-mono font-bold uppercase tracking-wider transition-all w-fit"
           >
             <Target className="w-4 h-4" />
             <span>{selectedSubject.name} Sorularını Çöz</span>
@@ -911,40 +911,40 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
         </div>
 
         {/* Hero Banner for Selected Subject */}
-        <div className={`relative overflow-hidden rounded-3xl bg-gradient-to-r ${selectedSubject.colorGradient} border p-8 shadow-2xl`}>
+        <div className="relative overflow-hidden rounded-sm bg-[#111115] border border-zinc-800 p-8 shadow-2xl">
           <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div className="space-y-4 max-w-2xl">
               <div className="flex items-center gap-3">
-                <div className={`p-4 rounded-2xl border shadow-xl ${selectedSubject.badgeColor}`}>
+                <div className="p-3.5 rounded-sm border border-zinc-800 bg-zinc-900 text-white">
                   {renderSubjectIcon(selectedSubject.iconName)}
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${selectedSubject.badgeColor}`}>
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-sm border border-zinc-700 bg-zinc-900 text-zinc-300">
                       {selectedSubject.type} MÜFREDATI
                     </span>
-                    <span className="text-xs text-slate-400 font-medium">Soru Ağırlığı: {selectedSubject.examWeight}</span>
+                    <span className="text-xs text-zinc-400 font-mono">Soru Ağırlığı: {selectedSubject.examWeight}</span>
                   </div>
-                  <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight mt-1">
+                  <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-1">
                     {selectedSubject.name}
                   </h1>
                 </div>
               </div>
 
-              <p className="text-slate-200 text-sm leading-relaxed">
+              <p className="text-zinc-400 text-xs leading-relaxed">
                 {selectedSubject.description} Tüm konu anlatım özetleri, ÖSYM soru kalıpları analizi ve matematiksel formüller bu sayfada derlenmiştir.
               </p>
             </div>
 
             {/* Subject Live Progress Box */}
-            <div className="p-6 rounded-2xl bg-slate-950/80 border border-slate-800 text-center min-w-[220px] shadow-2xl">
-              <span className="text-xs text-slate-400 font-medium block">Ders Öğrenme İlerlemeniz</span>
-              <span className="text-3xl font-black text-emerald-400 mt-1 block">%{progressPercent}</span>
-              <span className="text-xs text-slate-400 mt-0.5 block">{completedCount} / {selectedSubject.topics.length} Konu Tamamlandı</span>
+            <div className="p-6 rounded-sm bg-zinc-900 border border-zinc-800 text-center min-w-[220px]">
+              <span className="text-[11px] font-mono font-bold uppercase text-zinc-400 block">Ders Öğrenme İlerlemeniz</span>
+              <span className="text-3xl font-mono font-bold text-white mt-1 block">%{progressPercent}</span>
+              <span className="text-xs font-mono text-zinc-400 mt-0.5 block">{completedCount} / {selectedSubject.topics.length} Konu Tamamlandı</span>
               
-              <div className="w-full bg-slate-900 h-2.5 rounded-full mt-3 overflow-hidden border border-slate-800">
+              <div className="w-full bg-zinc-950 h-2 rounded-none mt-3 overflow-hidden border border-zinc-800">
                 <div 
-                  className="bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500 h-full rounded-full transition-all duration-500" 
+                  className="bg-white h-full transition-all duration-500" 
                   style={{ width: `${progressPercent}%` }} 
                 />
               </div>
@@ -953,14 +953,14 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
         </div>
 
         {/* Full-Page Inner Tabs */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-          <div className="inline-flex p-1.5 rounded-2xl bg-slate-900 border border-slate-800 backdrop-blur-md">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-b border-zinc-800 pb-4">
+          <div className="inline-flex p-1 rounded-sm bg-[#111115] border border-zinc-800">
             <button
               onClick={() => setActiveDetailTab('mufredat')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-sm text-xs font-mono font-bold uppercase tracking-wider transition-all ${
                 activeDetailTab === 'mufredat'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-zinc-800 text-white'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               <FileText className="w-4 h-4" />
@@ -970,23 +970,23 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
             {selectedSubject.keyFormulas && selectedSubject.keyFormulas.length > 0 && (
               <button
                 onClick={() => setActiveDetailTab('formuller')}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-sm text-xs font-mono font-bold uppercase tracking-wider transition-all ${
                   activeDetailTab === 'formuller'
-                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                    : 'text-slate-400 hover:text-slate-200'
+                    ? 'bg-zinc-800 text-white'
+                    : 'text-zinc-400 hover:text-zinc-200'
                 }`}
               >
-                <Zap className="w-4 h-4 text-amber-400" />
+                <Zap className="w-4 h-4 text-zinc-300" />
                 <span>⚡ Formül Kütüphanesi ({selectedSubject.keyFormulas.length})</span>
               </button>
             )}
 
             <button
               onClick={() => setActiveDetailTab('analiz')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-sm text-xs font-mono font-bold uppercase tracking-wider transition-all ${
                 activeDetailTab === 'analiz'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-zinc-800 text-white'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               <BarChart3 className="w-4 h-4" />
@@ -997,27 +997,27 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
           {/* Importance Filter */}
           {activeDetailTab === 'mufredat' && (
             <div className="flex items-center gap-2">
-              <span className="text-xs text-slate-400 font-medium">Önem Filtresi:</span>
+              <span className="text-xs text-zinc-400 font-mono">Önem Filtresi:</span>
               <button
                 onClick={() => setImportanceFilter('all')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  importanceFilter === 'all' ? 'bg-indigo-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-slate-200'
+                className={`px-3 py-1.5 rounded-sm text-xs font-mono font-bold uppercase transition-all ${
+                  importanceFilter === 'all' ? 'bg-zinc-800 text-white' : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
                 }`}
               >
                 Tümü
               </button>
               <button
                 onClick={() => setImportanceFilter('Essential')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  importanceFilter === 'Essential' ? 'bg-rose-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-slate-200'
+                className={`px-3 py-1.5 rounded-sm text-xs font-mono font-bold uppercase transition-all ${
+                  importanceFilter === 'Essential' ? 'bg-rose-950 border border-rose-500/40 text-rose-300' : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
                 }`}
               >
                 Kesin Çıkanlar
               </button>
               <button
                 onClick={() => setImportanceFilter('High')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  importanceFilter === 'High' ? 'bg-amber-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-slate-200'
+                className={`px-3 py-1.5 rounded-sm text-xs font-mono font-bold uppercase transition-all ${
+                  importanceFilter === 'High' ? 'bg-amber-950 border border-amber-500/40 text-amber-300' : 'bg-zinc-950 text-zinc-400 hover:text-zinc-200 border border-zinc-800'
                 }`}
               >
                 Yüksek Önem
@@ -1034,56 +1034,56 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
               return (
                 <div
                   key={t.id}
-                  className={`rounded-3xl border p-6 transition-all duration-300 ${
+                  className={`rounded-sm border p-6 transition-all duration-300 ${
                     isDone 
                       ? 'bg-emerald-950/20 border-emerald-500/30' 
-                      : 'bg-slate-900/90 border-slate-800 hover:border-slate-700 shadow-xl'
+                      : 'bg-[#111115] border-zinc-800 hover:border-zinc-700 shadow-xl'
                   }`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-4 flex-1">
                       <button
                         onClick={() => toggleTopicCompletion(t.id)}
-                        className={`mt-1 p-2 rounded-xl border transition-all ${
+                        className={`mt-1 p-2 rounded-sm border transition-all ${
                           isDone
-                            ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-lg shadow-emerald-500/20'
-                            : 'bg-slate-950 border-slate-700 text-slate-500 hover:border-slate-500'
+                            ? 'bg-emerald-500 text-zinc-950 border-emerald-400 shadow-lg'
+                            : 'bg-zinc-950 border-zinc-700 text-zinc-500 hover:border-zinc-500'
                         }`}
                         title={isDone ? 'Tamamlandı' : 'Tamamlandı olarak işaretle'}
                       >
-                        <Check className="w-5 h-5 stroke-[3]" />
+                        <Check className="w-4 h-4 stroke-[3]" />
                       </button>
 
                       <div className="space-y-3 flex-1">
                         <div className="flex items-center gap-3 flex-wrap">
-                          <span className="text-xs font-bold text-slate-500 bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800">
+                          <span className="text-xs font-mono font-bold text-zinc-400 bg-zinc-950 px-2.5 py-1 rounded-sm border border-zinc-800">
                             Konu #{idx + 1}
                           </span>
-                          <h3 className={`text-lg font-extrabold ${isDone ? 'text-emerald-300 line-through' : 'text-slate-100'}`}>
+                          <h3 className={`text-base font-bold ${isDone ? 'text-emerald-400 line-through' : 'text-zinc-100'}`}>
                             {t.title}
                           </h3>
-                          <span className={`text-xs font-bold px-3 py-1 rounded-full border ${
+                          <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-sm border ${
                             t.importance === 'Essential' 
                               ? 'bg-rose-950/80 text-rose-300 border-rose-500/40' 
                               : t.importance === 'High'
                               ? 'bg-amber-950/80 text-amber-300 border-amber-500/40'
-                              : 'bg-indigo-950/80 text-indigo-300 border-indigo-500/40'
+                              : 'bg-zinc-900 text-zinc-300 border-zinc-700'
                           }`}>
                             {t.importance === 'Essential' ? '🔥 Kesin Soru Çıkar' : t.importance === 'High' ? '⚡ Yüksek Önem' : '📌 Standart'}
                           </span>
                         </div>
 
-                        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800/80 text-sm text-slate-300 leading-relaxed">
+                        <div className="p-4 rounded-sm bg-zinc-950 border border-zinc-800/80 text-xs text-zinc-300 leading-relaxed">
                           <FormattedMathText text={t.summary} />
                         </div>
 
                         {/* Math Formulas */}
                         {t.formulas && t.formulas.length > 0 && (
                           <div className="space-y-2 pt-1">
-                            <span className="text-xs font-bold text-slate-400 block">Kritik Bağıntılar:</span>
+                            <span className="text-xs font-mono font-bold text-zinc-400 block uppercase">Kritik Bağıntılar:</span>
                             <div className="flex items-center gap-2 flex-wrap">
                               {t.formulas.map((form, fIdx) => (
-                                <div key={fIdx} className="px-3.5 py-2 rounded-xl bg-slate-950 border border-indigo-500/20 text-sm text-indigo-200">
+                                <div key={fIdx} className="px-3.5 py-2 rounded-sm bg-zinc-950 border border-zinc-800 text-xs font-mono text-zinc-200">
                                   <FormattedMathText text={`$${form}$`} />
                                 </div>
                               ))}
@@ -1093,10 +1093,10 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
 
                         {/* Tips */}
                         {t.tips && t.tips.length > 0 && (
-                          <div className="p-3.5 rounded-2xl bg-gradient-to-r from-indigo-950/60 to-purple-950/60 border border-indigo-500/30 text-xs text-indigo-200 flex items-start gap-2.5">
-                            <Sparkles className="w-4 h-4 text-indigo-400 mt-0.5 flex-shrink-0" />
+                          <div className="p-3.5 rounded-sm bg-zinc-950 border border-zinc-800 text-xs text-zinc-300 flex items-start gap-2.5">
+                            <Sparkles className="w-4 h-4 text-zinc-300 mt-0.5 flex-shrink-0" />
                             <div>
-                              <strong className="text-indigo-300 font-bold block mb-0.5">Sınav Tüyosu & Sık Yapılan Hata:</strong>
+                              <strong className="text-zinc-200 font-mono font-bold uppercase block mb-0.5">Sınav Tüyosu & Sık Yapılan Hata:</strong>
                               {t.tips.join(' ')}
                             </div>
                           </div>
@@ -1104,9 +1104,9 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
                       </div>
                     </div>
 
-                    <div className="text-right whitespace-nowrap bg-slate-950 p-3 rounded-2xl border border-slate-800">
-                      <span className="text-xs text-slate-500 block">ÖSYM Soru Tahmini</span>
-                      <span className="text-xs font-bold text-indigo-300">{t.questionCountEstimate}</span>
+                    <div className="text-right whitespace-nowrap bg-zinc-950 p-3 rounded-sm border border-zinc-800 font-mono">
+                      <span className="text-[10px] text-zinc-500 uppercase block">ÖSYM Soru Tahmini</span>
+                      <span className="text-xs font-bold text-zinc-200">{t.questionCountEstimate}</span>
                     </div>
                   </div>
                 </div>
@@ -1119,22 +1119,22 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
         {activeDetailTab === 'formuller' && selectedSubject.keyFormulas && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {selectedSubject.keyFormulas.map((f, idx) => (
-              <div key={idx} className="p-6 rounded-3xl bg-slate-900 border border-amber-500/30 space-y-4 shadow-xl">
+              <div key={idx} className="p-6 rounded-sm bg-[#111115] border border-zinc-800 space-y-4 shadow-xl">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-amber-400 bg-amber-950/60 px-3 py-1 rounded-full border border-amber-500/40">
+                  <span className="text-xs font-mono font-bold text-zinc-300 bg-zinc-900 px-3 py-1 rounded-sm border border-zinc-700 uppercase">
                     Formül #{idx + 1}
                   </span>
-                  <Zap className="w-4 h-4 text-amber-400" />
+                  <Zap className="w-4 h-4 text-zinc-400" />
                 </div>
 
-                <h4 className="text-base font-bold text-white">{f.title}</h4>
+                <h4 className="text-sm font-bold text-white">{f.title}</h4>
 
-                <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 text-center">
-                  <FormattedMathText text={`$${f.math}$`} className="text-xl font-semibold text-amber-200" />
+                <div className="p-4 rounded-sm bg-zinc-950 border border-zinc-800 text-center">
+                  <FormattedMathText text={`$${f.math}$`} className="text-lg font-mono font-semibold text-white" />
                 </div>
 
                 {f.note && (
-                  <p className="text-xs text-slate-400 italic bg-slate-950/50 p-3 rounded-xl border border-slate-800">
+                  <p className="text-xs font-mono text-zinc-400 italic bg-zinc-950 p-3 rounded-sm border border-zinc-800">
                     💡 <strong>Not:</strong> {f.note}
                   </p>
                 )}
@@ -1145,19 +1145,19 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
 
         {/* TAB 3: DERS ANALİZ RAPORU */}
         {activeDetailTab === 'analiz' && (
-          <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-6">
-            <h3 className="text-xl font-bold text-white">Ders Performans Analizi</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800">
-                <span className="text-xs text-slate-400 block font-medium">Toplam Konu Sayısı</span>
+          <div className="p-8 rounded-sm bg-[#111115] border border-zinc-800 space-y-6">
+            <h3 className="text-sm font-mono font-bold uppercase tracking-wider text-white">Ders Performans Analizi</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono">
+              <div className="p-5 rounded-sm bg-zinc-950 border border-zinc-800">
+                <span className="text-xs text-zinc-400 block font-medium uppercase">Toplam Konu Sayısı</span>
                 <span className="text-2xl font-bold text-white mt-1 block">{selectedSubject.topics.length} Konu</span>
               </div>
-              <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800">
-                <span className="text-xs text-slate-400 block font-medium">Tamamlanan Konu</span>
+              <div className="p-5 rounded-sm bg-zinc-950 border border-zinc-800">
+                <span className="text-xs text-zinc-400 block font-medium uppercase">Tamamlanan Konu</span>
                 <span className="text-2xl font-bold text-emerald-400 mt-1 block">{completedCount} Konu</span>
               </div>
-              <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800">
-                <span className="text-xs text-slate-400 block font-medium">Kalan Konu</span>
+              <div className="p-5 rounded-sm bg-zinc-950 border border-zinc-800">
+                <span className="text-xs text-zinc-400 block font-medium uppercase">Kalan Konu</span>
                 <span className="text-2xl font-bold text-amber-400 mt-1 block">{selectedSubject.topics.length - completedCount} Konu</span>
               </div>
             </div>
@@ -1173,39 +1173,35 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
     <div className="space-y-8 animate-fade-in pb-12">
       
       {/* Top Welcome Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-purple-950 border border-indigo-500/20 p-8 shadow-2xl">
-        <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute right-1/3 -top-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="bg-[#111115] border border-zinc-800 rounded-sm p-6 sm:p-8 shadow-xl">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>YKS Müfredatı & Konu Anlatım Kataloğu</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-indigo-200">
+            <span className="text-[11px] font-mono font-bold tracking-widest text-zinc-400 uppercase block mb-1">
+              YKS MÜFREDATI & KONU ANLATIM KATALOĞU
+            </span>
+            <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
               TYT & AYT Ders Müfredatı
             </h1>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-zinc-400 text-xs leading-relaxed">
               ÖSYM sınav formatına tam uyumlu konu özetleri, formül kartları ve çıkabilecek soru tipleri analizi ile ders çalışmanızı planlayın.
             </p>
           </div>
 
           {/* Quick Progress Cards */}
-          <div className="flex items-center gap-4 w-full md:w-auto">
-            <div className="flex-1 md:flex-none p-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-center min-w-[120px]">
-              <span className="text-xs text-slate-400 block font-medium">TYT İlerlemesi</span>
-              <span className="text-2xl font-bold text-indigo-400 mt-1 block">%{stats.tytPercent}</span>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
-                <div className="bg-indigo-500 h-full rounded-full transition-all duration-500" style={{ width: `${stats.tytPercent}%` }} />
+          <div className="flex items-center gap-4 w-full md:w-auto font-mono">
+            <div className="flex-1 md:flex-none p-4 rounded-sm bg-zinc-900 border border-zinc-800 text-center min-w-[120px]">
+              <span className="text-[10px] text-zinc-400 block uppercase font-bold">TYT İlerlemesi</span>
+              <span className="text-xl font-bold text-white mt-1 block">%{stats.tytPercent}</span>
+              <div className="w-full bg-zinc-950 h-1.5 rounded-none mt-2 overflow-hidden border border-zinc-800">
+                <div className="bg-white h-full transition-all duration-500" style={{ width: `${stats.tytPercent}%` }} />
               </div>
             </div>
 
-            <div className="flex-1 md:flex-none p-4 rounded-2xl bg-slate-900/80 border border-slate-800 text-center min-w-[120px]">
-              <span className="text-xs text-slate-400 block font-medium">AYT İlerlemesi</span>
-              <span className="text-2xl font-bold text-purple-400 mt-1 block">%{stats.aytPercent}</span>
-              <div className="w-full bg-slate-800 h-1.5 rounded-full mt-2 overflow-hidden">
-                <div className="bg-purple-500 h-full rounded-full transition-all duration-500" style={{ width: `${stats.aytPercent}%` }} />
+            <div className="flex-1 md:flex-none p-4 rounded-sm bg-zinc-900 border border-zinc-800 text-center min-w-[120px]">
+              <span className="text-[10px] text-zinc-400 block uppercase font-bold">AYT İlerlemesi</span>
+              <span className="text-xl font-bold text-white mt-1 block">%{stats.aytPercent}</span>
+              <div className="w-full bg-zinc-950 h-1.5 rounded-none mt-2 overflow-hidden border border-zinc-800">
+                <div className="bg-white h-full transition-all duration-500" style={{ width: `${stats.aytPercent}%` }} />
               </div>
             </div>
           </div>
@@ -1216,33 +1212,33 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
         
         {/* TYT / AYT Selector */}
-        <div className="inline-flex p-1.5 rounded-2xl bg-slate-900 border border-slate-800 backdrop-blur-md">
+        <div className="inline-flex p-1 bg-[#111115] border border-zinc-800 rounded-sm">
           <button
             onClick={() => setActiveTab('TYT')}
-            className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
+            className={`flex items-center gap-2.5 px-6 py-2.5 rounded-sm text-xs font-mono font-bold uppercase transition-all duration-200 ${
               activeTab === 'TYT'
-                ? 'bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white shadow-lg shadow-indigo-500/25'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                ? 'bg-zinc-800 text-white border border-zinc-700'
+                : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
             <GraduationCap className="w-4 h-4" />
             <span>TYT (Temel Yeterlilik)</span>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white font-normal">
+            <span className="text-[10px] px-2 py-0.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-300">
               {ALL_SUBJECTS.filter((s) => s.type === 'TYT').length} Ders
             </span>
           </button>
 
           <button
             onClick={() => setActiveTab('AYT')}
-            className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
+            className={`flex items-center gap-2.5 px-6 py-2.5 rounded-sm text-xs font-mono font-bold uppercase transition-all duration-200 ${
               activeTab === 'AYT'
-                ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-rose-600 text-white shadow-lg shadow-purple-500/25'
-                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                ? 'bg-zinc-800 text-white border border-zinc-700'
+                : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
             <Award className="w-4 h-4" />
             <span>AYT (Alan Yeterlilik)</span>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white font-normal">
+            <span className="text-[10px] px-2 py-0.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-300">
               {ALL_SUBJECTS.filter((s) => s.type === 'AYT').length} Ders
             </span>
           </button>
@@ -1250,18 +1246,18 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
 
         {/* Search Bar */}
         <div className="relative flex-1 sm:max-w-xs">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Ders veya konu ara..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500/60 focus:ring-1 focus:ring-indigo-500/60 transition-all"
+            className="w-full pl-10 pr-4 py-2.5 rounded-sm bg-[#111115] border border-zinc-800 text-zinc-200 text-xs placeholder-zinc-500 focus:outline-none focus:border-zinc-600 transition-all font-mono"
           />
           {searchQuery && (
             <button 
               onClick={() => setSearchQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300"
             >
               <X className="w-4 h-4" />
             </button>
@@ -1270,7 +1266,7 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
       </div>
 
       {/* Subjects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredSubjects.map((subj) => {
           const completedInSubj = subj.topics.filter((t) => completedTopicIds.includes(t.id)).length;
           const subjPercent = Math.round((completedInSubj / subj.topics.length) * 100);
@@ -1279,50 +1275,50 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
             <div
               key={subj.id}
               onClick={() => setSelectedSubject(subj)}
-              className={`group relative rounded-3xl bg-slate-900/90 border p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl cursor-pointer ${subj.colorGradient}`}
+              className="group relative rounded-sm bg-[#111115] border border-zinc-800 hover:border-zinc-700 p-6 flex flex-col justify-between transition-all cursor-pointer space-y-4 shadow-xl"
             >
               <div className="space-y-4">
                 {/* Header info */}
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <div className={`p-3 rounded-2xl border ${subj.badgeColor}`}>
+                    <div className="p-3 rounded-sm border border-zinc-800 bg-zinc-900 text-white">
                       {renderSubjectIcon(subj.iconName)}
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors flex items-center gap-1.5">
+                      <h3 className="text-base font-bold text-white group-hover:text-zinc-300 transition-colors flex items-center gap-1.5">
                         <span>{subj.name}</span>
-                        <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-indigo-400" />
+                        <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-zinc-400" />
                       </h3>
-                      <span className="text-xs text-slate-400 block mt-0.5">
+                      <span className="text-xs font-mono text-zinc-400 block mt-0.5">
                         {subj.topics.length} Konu Başlığı
                       </span>
                     </div>
                   </div>
 
-                  <span className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${subj.badgeColor}`}>
+                  <span className="text-[9px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-sm border border-zinc-700 bg-zinc-900 text-zinc-300 uppercase">
                     {subj.type}
                   </span>
                 </div>
 
-                <p className="text-xs text-slate-300 leading-relaxed line-clamp-2">
+                <p className="text-xs text-zinc-400 leading-relaxed line-clamp-2">
                   {subj.description}
                 </p>
 
                 {/* Exam Weight Badge */}
-                <div className="flex items-center gap-2 text-xs font-medium text-slate-400 bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                  <Clock className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>Soru Ağırlığı: <strong className="text-slate-200">{subj.examWeight}</strong></span>
+                <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 bg-zinc-950 p-2.5 rounded-sm border border-zinc-800">
+                  <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                  <span>Soru Ağırlığı: <strong className="text-zinc-200">{subj.examWeight}</strong></span>
                 </div>
 
                 {/* Progress bar */}
-                <div className="space-y-1.5 pt-1">
-                  <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
+                <div className="space-y-1.5 pt-1 font-mono text-xs">
+                  <div className="flex items-center justify-between text-zinc-400">
                     <span>Tamamlanan Konu</span>
                     <span>{completedInSubj}/{subj.topics.length} (%{subjPercent})</span>
                   </div>
-                  <div className="w-full bg-slate-950 h-2 rounded-full overflow-hidden border border-slate-800">
+                  <div className="w-full bg-zinc-950 h-1.5 rounded-none overflow-hidden border border-zinc-800">
                     <div
-                      className="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full transition-all duration-300"
+                      className="bg-white h-full transition-all duration-300"
                       style={{ width: `${subjPercent}%` }}
                     />
                   </div>
@@ -1330,13 +1326,13 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-2 mt-6 pt-4 border-t border-slate-800/80">
+              <div className="flex items-center gap-2 mt-6 pt-4 border-t border-zinc-800/80">
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedSubject(subj);
                   }}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-500/20"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 text-xs font-mono font-bold uppercase transition-all"
                 >
                   <BookOpen className="w-4 h-4" />
                   <span>Dersi Aç & İncele</span>
@@ -1347,10 +1343,10 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
                     e.stopPropagation();
                     onNavigateToQuiz(subj.category);
                   }}
-                  className="flex items-center justify-center p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition-all"
+                  className="flex items-center justify-center p-2.5 rounded-sm bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 transition-all"
                   title="Bu Dersin Testini Çöz"
                 >
-                  <Target className="w-4 h-4 text-purple-400" />
+                  <Target className="w-4 h-4 text-zinc-300" />
                 </button>
               </div>
             </div>
@@ -1359,10 +1355,10 @@ export const DerslerView: React.FC<DerslerViewProps> = ({ onNavigateToQuiz }) =>
       </div>
 
       {filteredSubjects.length === 0 && (
-        <div className="text-center py-16 rounded-2xl bg-slate-900/50 border border-slate-800">
-          <BookOpen className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <h3 className="text-base font-semibold text-slate-300">Aramanıza Uygun Ders Bulunamadı</h3>
-          <p className="text-xs text-slate-500 mt-1">Lütfen arama teriminizi değiştirin veya sıfırlayın.</p>
+        <div className="text-center py-16 rounded-sm bg-[#111115] border border-zinc-800">
+          <BookOpen className="w-12 h-12 text-zinc-600 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-zinc-300 uppercase tracking-tight">Aramanıza Uygun Ders Bulunamadı</h3>
+          <p className="text-xs text-zinc-500 mt-1">Lütfen arama teriminizi değiştirin veya sıfırlayın.</p>
         </div>
       )}
 

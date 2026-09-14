@@ -116,11 +116,11 @@ export const QuestionManagerModal: React.FC<QuestionManagerModalProps> = ({
         {/* Header bar */}
         <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-sm bg-zinc-900 text-amber-400 border border-zinc-800">
-              <PlusCircle className="w-5 h-5 text-amber-400" />
+            <div className="p-2 rounded-sm bg-zinc-900 text-zinc-200 border border-zinc-800">
+              <PlusCircle className="w-5 h-5 text-zinc-200" />
             </div>
             <div>
-              <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block">
+              <span className="text-[11px] font-mono font-bold tracking-widest text-zinc-400 uppercase block">
                 YÖNETİCİ MODÜLÜ
               </span>
               <h3 className="text-sm font-bold uppercase tracking-wider text-white">Yeni Soru & Şık Ekle</h3>
@@ -139,11 +139,11 @@ export const QuestionManagerModal: React.FC<QuestionManagerModalProps> = ({
           
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Test Seçin</label>
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">Test Seçin</label>
               <select
                 value={selectedQuizId}
                 onChange={(e) => setSelectedQuizId(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-3 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500"
               >
                 {quizzes.map((q) => (
                   <option key={q.id} value={q.id}>
@@ -154,144 +154,144 @@ export const QuestionManagerModal: React.FC<QuestionManagerModalProps> = ({
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Soru Numarası</label>
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">Soru Numarası</label>
               <input
                 type="number"
                 required
                 min={1}
                 value={questionNumber}
                 onChange={(e) => setQuestionNumber(Number(e.target.value))}
-                className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-3 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Soru Puanı</label>
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">Soru Puanı</label>
               <input
                 type="number"
                 required
                 min={1}
                 value={points}
                 onChange={(e) => setPoints(Number(e.target.value))}
-                className="w-full px-3 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500"
+                className="w-full px-3 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Soru Metni (Markdown / KaTeX)</label>
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">Soru Metni (Markdown / KaTeX)</label>
             <textarea
               required
               rows={3}
               value={questionText}
               onChange={(e) => setQuestionText(e.target.value)}
               placeholder="Örn: \log_2(x - 3) = 4 denklemini sağlayan x değeri kaçtır?"
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500"
+              className="w-full px-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Çözüm / Açıklama Metni (İsteğe Bağlı)</label>
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">Çözüm / Açıklama Metni (İsteğe Bağlı)</label>
             <textarea
               rows={2}
               value={explanation}
               onChange={(e) => setExplanation(e.target.value)}
               placeholder="Sorunun adım adım çözümü ve detaylı açıklaması..."
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500"
+              className="w-full px-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">Konu Anlatımı & Özeti (İsteğe Bağlı)</label>
+            <label className="block text-xs font-semibold text-zinc-300 mb-1">Konu Anlatımı & Özeti (İsteğe Bağlı)</label>
             <textarea
               rows={3}
               value={topicSummary}
               onChange={(e) => setTopicSummary(e.target.value)}
               placeholder="Sorunun ait olduğu konuyla ilgili kurallar, formüller ve özet bilgi..."
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-sm focus:outline-none focus:border-amber-500"
+              className="w-full px-4 py-2.5 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
             />
           </div>
 
           {/* Options (A, B, C, D, E) */}
           <div className="space-y-3 pt-2">
             <div className="flex items-center justify-between">
-              <label className="block text-xs font-bold uppercase tracking-wider text-amber-400">Şıklar (A, B, C, D, E) ve Doğru Cevap:</label>
+              <label className="block text-xs font-mono font-bold uppercase tracking-wider text-zinc-300">Şıklar (A, B, C, D, E) ve Doğru Cevap:</label>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Şık A</label>
+                <label className="text-xs font-semibold text-zinc-300 mb-1 block">Şık A</label>
                 <input
                   type="text"
                   required
                   value={optionA}
                   onChange={(e) => setOptionA(e.target.value)}
                   placeholder="A Şıkkı Metni"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Şık B</label>
+                <label className="text-xs font-semibold text-zinc-300 mb-1 block">Şık B</label>
                 <input
                   type="text"
                   required
                   value={optionB}
                   onChange={(e) => setOptionB(e.target.value)}
                   placeholder="B Şıkkı Metni"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Şık C</label>
+                <label className="text-xs font-semibold text-zinc-300 mb-1 block">Şık C</label>
                 <input
                   type="text"
                   required
                   value={optionC}
                   onChange={(e) => setOptionC(e.target.value)}
                   placeholder="C Şıkkı Metni"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Şık D</label>
+                <label className="text-xs font-semibold text-zinc-300 mb-1 block">Şık D</label>
                 <input
                   type="text"
                   required
                   value={optionD}
                   onChange={(e) => setOptionD(e.target.value)}
                   placeholder="D Şıkkı Metni"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
                 />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Şık E</label>
+                <label className="text-xs font-semibold text-zinc-300 mb-1 block">Şık E</label>
                 <input
                   type="text"
                   required
                   value={optionE}
                   onChange={(e) => setOptionE(e.target.value)}
                   placeholder="E Şıkkı Metni"
-                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 rounded-sm bg-zinc-950 border border-zinc-800 text-zinc-100 text-xs focus:outline-none focus:border-zinc-500 font-mono"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1">Doğru Şık Hangisi?</label>
+              <label className="block text-xs font-semibold text-zinc-300 mb-1">Doğru Şık Hangisi?</label>
               <div className="flex gap-2">
                 {(['A', 'B', 'C', 'D', 'E'] as const).map((key) => (
                   <button
                     key={key}
                     type="button"
                     onClick={() => setCorrectOption(key)}
-                    className={`flex-1 py-2 rounded-xl text-xs font-bold border transition-all ${
+                    className={`flex-1 py-2 rounded-sm text-xs font-mono font-bold border transition-all ${
                       correctOption === key
-                        ? 'bg-emerald-600 border-emerald-400 text-white shadow-md'
-                        : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200'
+                        ? 'bg-zinc-800 border-zinc-500 text-white shadow-md'
+                        : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:text-zinc-200'
                     }`}
                   >
                     Şık {key}
@@ -304,7 +304,7 @@ export const QuestionManagerModal: React.FC<QuestionManagerModalProps> = ({
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-600 to-rose-600 text-white font-semibold text-sm shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+            className="w-full py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 font-bold text-xs uppercase tracking-wider shadow-lg transition-all flex items-center justify-center gap-2"
           >
             {submitting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <CheckCircle className="w-4 h-4" />}
             <span>Soruyu Veritabanına Kaydet</span>

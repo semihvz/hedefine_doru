@@ -10,23 +10,23 @@ export const ToastContainer: React.FC = () => {
       {toasts.map((toast) => (
         <div
           key={toast.id}
-          className={`pointer-events-auto flex items-center justify-between p-4 rounded-xl shadow-2xl backdrop-blur-md border transition-all duration-300 transform translate-x-0 ${
+          className={`pointer-events-auto flex items-center justify-between p-4 rounded-sm shadow-2xl bg-[#111115] border transition-all duration-300 font-mono text-xs ${
             toast.type === 'success'
-              ? 'bg-emerald-950/80 border-emerald-500/50 text-emerald-200'
+              ? 'border-emerald-500/50 text-emerald-300'
               : toast.type === 'error'
-              ? 'bg-rose-950/80 border-rose-500/50 text-rose-200'
-              : 'bg-indigo-950/80 border-indigo-500/50 text-indigo-200'
+              ? 'border-rose-500/50 text-rose-300'
+              : 'border-zinc-700 text-zinc-200'
           }`}
         >
           <div className="flex items-center gap-3">
-            {toast.type === 'success' && <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />}
-            {toast.type === 'error' && <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />}
-            {toast.type === 'info' && <Info className="w-5 h-5 text-indigo-400 shrink-0" />}
-            <span className="text-sm font-medium leading-relaxed">{toast.message}</span>
+            {toast.type === 'success' && <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />}
+            {toast.type === 'error' && <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />}
+            {toast.type === 'info' && <Info className="w-4 h-4 text-zinc-400 shrink-0" />}
+            <span className="font-semibold leading-relaxed">{toast.message}</span>
           </div>
           <button
             onClick={() => removeToast(toast.id)}
-            className="p-1 hover:bg-white/10 rounded-lg transition-colors ml-2 text-current opacity-70 hover:opacity-100"
+            className="p-1 hover:bg-zinc-800 rounded-sm transition-colors ml-2 text-current opacity-70 hover:opacity-100"
           >
             <X className="w-4 h-4" />
           </button>
@@ -35,3 +35,4 @@ export const ToastContainer: React.FC = () => {
     </div>
   );
 };
+

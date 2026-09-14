@@ -524,31 +524,31 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
       <div className="space-y-6 animate-fade-in pb-16">
         
         {/* Exam Runner Top Bar */}
-        <div className="sticky top-20 z-30 p-4 rounded-2xl bg-slate-900/95 border border-slate-800 backdrop-blur-md flex items-center justify-between shadow-2xl">
+        <div className="sticky top-20 z-30 p-4 rounded-sm bg-[#111115] border border-zinc-800 backdrop-blur-md flex items-center justify-between shadow-2xl">
           <div className="flex items-center gap-3">
-            <div className={`p-2.5 rounded-xl border ${activeExam.badgeColor}`}>
+            <div className="p-2.5 rounded-sm border border-zinc-800 bg-zinc-900 text-white">
               <Target className="w-5 h-5" />
             </div>
             <div>
               <h2 className="text-base font-bold text-white leading-tight">{activeExam.title}</h2>
-              <span className="text-xs text-slate-400">Soru {currentQuestionIdx + 1} / {activeExam.totalQuestions}</span>
+              <span className="text-xs font-mono text-zinc-400">Soru {currentQuestionIdx + 1} / {activeExam.totalQuestions}</span>
             </div>
           </div>
 
           {/* Timer Display */}
           <div className="flex items-center gap-4">
-            <div className={`flex items-center gap-2 px-4 py-2 rounded-xl border font-mono font-bold text-sm ${
+            <div className={`flex items-center gap-2 px-4 py-2 rounded-sm border font-mono font-bold text-sm ${
               remainingSeconds < 300 
                 ? 'bg-rose-950/80 border-rose-500/40 text-rose-300 animate-pulse' 
-                : 'bg-slate-950 border-slate-800 text-amber-300'
+                : 'bg-zinc-950 border-zinc-800 text-zinc-200'
             }`}>
-              <Clock className="w-4 h-4 text-amber-400" />
+              <Clock className="w-4 h-4 text-zinc-400" />
               <span>{formatTimer(remainingSeconds)}</span>
             </div>
 
             <button
               onClick={handleFinishExam}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold shadow-lg shadow-emerald-500/20 transition-all"
+              className="px-5 py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-zinc-950 text-xs font-mono font-bold uppercase tracking-wider transition-all"
             >
               Denemeyi Bitir & Optiği Teslim Et
             </button>
@@ -560,25 +560,25 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
           
           {/* Main Question Viewer (Left 3 Cols) */}
           <div className="lg:col-span-3 space-y-6">
-            <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 space-y-6 shadow-2xl">
+            <div className="p-8 rounded-sm bg-[#111115] border border-zinc-800 space-y-6 shadow-2xl">
               
               {/* Question Header */}
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold bg-indigo-600 text-white px-3 py-1 rounded-lg">
+                  <span className="text-xs font-mono font-bold bg-zinc-900 text-white px-3 py-1 rounded-sm border border-zinc-700">
                     Soru #{currentQ.number}
                   </span>
-                  <span className="text-xs font-semibold text-slate-400 bg-slate-950 px-3 py-1 rounded-lg border border-slate-800">
+                  <span className="text-xs font-mono font-semibold text-zinc-400 bg-zinc-950 px-3 py-1 rounded-sm border border-zinc-800">
                     {currentQ.subject}
                   </span>
                 </div>
 
                 <button
                   onClick={() => setFlaggedQuestions(prev => ({ ...prev, [currentQ.id]: !prev[currentQ.id] }))}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-sm text-xs font-mono font-semibold transition-all ${
                     flaggedQuestions[currentQ.id]
-                      ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30'
-                      : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200'
+                      ? 'bg-amber-950/40 text-amber-300 border border-amber-500/30'
+                      : 'bg-zinc-950 text-zinc-400 border border-zinc-800 hover:text-zinc-200'
                   }`}
                 >
                   <Bookmark className="w-3.5 h-3.5" />
@@ -587,7 +587,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
               </div>
 
               {/* Question Text */}
-              <div className="text-base text-slate-100 font-medium leading-relaxed">
+              <div className="text-base text-zinc-100 font-medium leading-relaxed">
                 <FormattedMathText text={currentQ.questionText} />
               </div>
 
@@ -599,14 +599,14 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
                     <button
                       key={opt.key}
                       onClick={() => setUserAnswers(prev => ({ ...prev, [currentQ.id]: opt.key }))}
-                      className={`w-full p-4 rounded-2xl border text-left flex items-start gap-4 transition-all duration-200 ${
+                      className={`w-full p-4 rounded-sm border text-left flex items-start gap-4 transition-all duration-200 ${
                         isSelected
-                          ? 'bg-indigo-600/20 border-indigo-500 text-white shadow-lg shadow-indigo-500/10'
-                          : 'bg-slate-950/60 border-slate-800 text-slate-300 hover:border-slate-700 hover:bg-slate-950'
+                          ? 'bg-zinc-900 border-zinc-500 text-white shadow-md'
+                          : 'bg-zinc-950/60 border-zinc-800 text-zinc-300 hover:border-zinc-700 hover:bg-zinc-900/50'
                       }`}
                     >
-                      <span className={`w-8 h-8 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0 transition-all ${
-                        isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-900 border border-slate-800 text-slate-400'
+                      <span className={`w-8 h-8 rounded-sm flex items-center justify-center font-mono font-bold text-sm flex-shrink-0 transition-all ${
+                        isSelected ? 'bg-zinc-100 text-zinc-950' : 'bg-zinc-900 border border-zinc-800 text-zinc-400'
                       }`}>
                         {opt.key}
                       </span>
@@ -619,11 +619,11 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
               </div>
 
               {/* Navigation Controls */}
-              <div className="flex items-center justify-between pt-4 border-t border-slate-800">
+              <div className="flex items-center justify-between pt-4 border-t border-zinc-800">
                 <button
                   disabled={currentQuestionIdx === 0}
                   onClick={() => setCurrentQuestionIdx(prev => prev - 1)}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-slate-200 text-xs font-semibold transition-all"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 disabled:opacity-40 text-zinc-200 text-xs font-mono font-bold uppercase transition-all"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span>Önceki Soru</span>
@@ -637,7 +637,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
                       return next;
                     });
                   }}
-                  className="text-xs text-slate-400 hover:text-rose-400 transition-colors"
+                  className="text-xs font-mono text-zinc-400 hover:text-rose-400 transition-colors uppercase"
                 >
                   Yanıtı Temizle
                 </button>
@@ -645,7 +645,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
                 <button
                   disabled={currentQuestionIdx === activeExam.questions.length - 1}
                   onClick={() => setCurrentQuestionIdx(prev => prev + 1)}
-                  className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 text-white text-xs font-semibold transition-all"
+                  className="flex items-center gap-2 px-5 py-2.5 rounded-sm bg-zinc-100 hover:bg-white disabled:opacity-40 text-zinc-950 text-xs font-mono font-bold uppercase transition-all"
                 >
                   <span>Sonraki Soru</span>
                   <ChevronRight className="w-4 h-4" />
@@ -657,9 +657,9 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
           {/* Optic Form & Question Map (Right 1 Col) */}
           <div className="space-y-6">
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 shadow-2xl">
-              <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-                <FileSpreadsheet className="w-4 h-4 text-amber-400" />
+            <div className="p-6 rounded-sm bg-[#111115] border border-zinc-800 space-y-4 shadow-2xl">
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-zinc-200 flex items-center gap-2">
+                <FileSpreadsheet className="w-4 h-4 text-zinc-300" />
                 <span>Optik Form & Soru Haritası</span>
               </h3>
 
@@ -673,20 +673,20 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
                     <button
                       key={q.id}
                       onClick={() => setCurrentQuestionIdx(idx)}
-                      className={`h-11 rounded-xl font-bold text-xs flex flex-col items-center justify-center border transition-all ${
+                      className={`h-11 rounded-sm font-mono font-bold text-xs flex flex-col items-center justify-center border transition-all ${
                         isSelected
-                          ? 'ring-2 ring-indigo-500 ring-offset-2 ring-offset-slate-950 font-black'
+                          ? 'ring-2 ring-zinc-400 ring-offset-2 ring-offset-zinc-950 font-black'
                           : ''
                       } ${
                         isAnswered
-                          ? 'bg-emerald-600/20 border-emerald-500/40 text-emerald-300'
+                          ? 'bg-zinc-900 border-zinc-600 text-white'
                           : isFlagged
-                          ? 'bg-amber-600/20 border-amber-500/40 text-amber-300'
-                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                          ? 'bg-amber-950/40 border-amber-500/40 text-amber-300'
+                          : 'bg-zinc-950 border-zinc-800 text-zinc-400 hover:border-zinc-700'
                       }`}
                     >
                       <span>{q.number}</span>
-                      <span className="text-[9px] text-slate-500 font-mono">
+                      <span className="text-[9px] text-zinc-500 font-mono">
                         {userAnswers[q.id] || '-'}
                       </span>
                     </button>
@@ -695,17 +695,17 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
               </div>
 
               {/* Legend */}
-              <div className="space-y-2 pt-3 border-t border-slate-800 text-[11px] text-slate-400 font-medium">
+              <div className="space-y-2 pt-3 border-t border-zinc-800 text-[11px] text-zinc-400 font-mono">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-md bg-emerald-600/30 border border-emerald-500/40" />
+                  <div className="w-3 h-3 rounded-none bg-zinc-900 border border-zinc-600" />
                   <span>İşaretlendi ({Object.keys(userAnswers).length})</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-md bg-slate-950 border border-slate-800" />
+                  <div className="w-3 h-3 rounded-none bg-zinc-950 border border-zinc-800" />
                   <span>Boş ({activeExam.questions.length - Object.keys(userAnswers).length})</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-md bg-amber-600/30 border border-amber-500/40" />
+                  <div className="w-3 h-3 rounded-none bg-amber-950/40 border border-amber-500/40" />
                   <span>Şüpheli / İşaretli ({Object.keys(flaggedQuestions).filter(k => flaggedQuestions[k]).length})</span>
                 </div>
               </div>
@@ -726,7 +726,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
         <div className="bg-[#111115] border border-zinc-800 rounded-sm p-6 sm:p-8 shadow-xl">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2">
-              <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block mb-1">
+              <span className="text-[11px] font-mono font-bold tracking-widest text-zinc-400 uppercase block mb-1">
                 DENEME SINAVI SONUÇ KARNESİ
               </span>
               <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{activeExam.title}</h1>
@@ -738,7 +738,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
                 setActiveExam(null);
                 setIsExamFinished(false);
               }}
-              className="px-4 py-2 rounded-sm bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-200 text-xs font-bold uppercase tracking-wider transition-all"
+              className="px-4 py-2 rounded-sm bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-200 text-xs font-mono font-bold uppercase tracking-wider transition-all"
             >
               ← Listeye Dön
             </button>
@@ -748,35 +748,35 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
         {/* Score Breakdown Cards */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           <div className="p-4 rounded-sm bg-[#111115] border border-zinc-800 text-center">
-            <span className="text-[10px] text-zinc-400 font-bold uppercase block">Toplam Net</span>
-            <span className="text-2xl font-bold text-amber-300 mt-1 block">{examResult.netScore} Net</span>
+            <span className="text-[10px] text-zinc-400 font-mono font-bold uppercase block">Toplam Net</span>
+            <span className="text-2xl font-mono font-bold text-white mt-1 block">{examResult.netScore} Net</span>
           </div>
 
           <div className="p-4 rounded-sm bg-[#111115] border border-zinc-800 text-center">
-            <span className="text-[10px] text-zinc-400 font-bold uppercase block">Doğru Sayısı</span>
-            <span className="text-2xl font-bold text-white mt-1 block">{examResult.correctCount}</span>
+            <span className="text-[10px] text-zinc-400 font-mono font-bold uppercase block">Doğru Sayısı</span>
+            <span className="text-2xl font-mono font-bold text-emerald-400 mt-1 block">{examResult.correctCount}</span>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 text-center">
-            <span className="text-xs text-slate-400 font-medium block">Yanlış Sayısı</span>
-            <span className="text-3xl font-black text-rose-400 mt-1 block">{examResult.wrongCount}</span>
+          <div className="p-4 rounded-sm bg-[#111115] border border-zinc-800 text-center">
+            <span className="text-[10px] text-zinc-400 font-mono font-bold uppercase block">Yanlış Sayısı</span>
+            <span className="text-2xl font-mono font-bold text-rose-400 mt-1 block">{examResult.wrongCount}</span>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 text-center">
-            <span className="text-xs text-slate-400 font-medium block">Boş Sayısı</span>
-            <span className="text-3xl font-black text-slate-400 mt-1 block">{examResult.emptyCount}</span>
+          <div className="p-4 rounded-sm bg-[#111115] border border-zinc-800 text-center">
+            <span className="text-[10px] text-zinc-400 font-mono font-bold uppercase block">Boş Sayısı</span>
+            <span className="text-2xl font-mono font-bold text-zinc-400 mt-1 block">{examResult.emptyCount}</span>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900 border border-indigo-500/30 text-center col-span-2 md:col-span-1">
-            <span className="text-xs text-indigo-300 font-medium block">Tahmini YKS Puanı</span>
-            <span className="text-3xl font-black text-indigo-400 mt-1 block">{examResult.scoreEstimate} P.</span>
+          <div className="p-4 rounded-sm bg-[#111115] border border-zinc-700 text-center col-span-2 md:col-span-1">
+            <span className="text-[10px] text-zinc-300 font-mono font-bold uppercase block">Tahmini YKS Puanı</span>
+            <span className="text-2xl font-mono font-bold text-white mt-1 block">{examResult.scoreEstimate} P.</span>
           </div>
         </div>
 
         {/* Question Review Section */}
         <div className="space-y-6">
-          <h3 className="text-xl font-bold text-white flex items-center gap-2">
-            <FileSpreadsheet className="w-5 h-5 text-indigo-400" />
+          <h3 className="text-sm font-mono font-bold uppercase tracking-wider text-white flex items-center gap-2">
+            <FileSpreadsheet className="w-4 h-4 text-zinc-300" />
             <span>Soru Detaylı Çözüm İncelemesi</span>
           </h3>
 
@@ -789,48 +789,48 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
               return (
                 <div
                   key={q.id}
-                  className={`p-6 rounded-3xl border space-y-4 transition-all ${
+                  className={`p-6 rounded-sm border space-y-4 transition-all ${
                     isCorrect
-                      ? 'bg-emerald-950/10 border-emerald-500/30'
+                      ? 'bg-emerald-950/20 border-emerald-500/30'
                       : isEmpty
-                      ? 'bg-slate-900/80 border-slate-800'
-                      : 'bg-rose-950/10 border-rose-500/30'
+                      ? 'bg-[#111115] border-zinc-800'
+                      : 'bg-rose-950/20 border-rose-500/30'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold bg-slate-950 px-3 py-1 rounded-lg text-slate-300 border border-slate-800">
+                      <span className="text-xs font-mono font-bold bg-zinc-950 px-3 py-1 rounded-sm text-zinc-300 border border-zinc-800">
                         Soru #{q.number} ({q.subject})
                       </span>
                       {isCorrect && (
-                        <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded-full border border-emerald-500/40 flex items-center gap-1">
+                        <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 px-2.5 py-0.5 rounded-sm border border-emerald-500/40 flex items-center gap-1 uppercase">
                           <Check className="w-3.5 h-3.5" /> Doğru
                         </span>
                       )}
                       {!isCorrect && !isEmpty && (
-                        <span className="text-xs font-bold text-rose-400 bg-rose-950/60 px-2.5 py-0.5 rounded-full border border-rose-500/40 flex items-center gap-1">
+                        <span className="text-xs font-mono font-bold text-rose-400 bg-rose-950/60 px-2.5 py-0.5 rounded-sm border border-rose-500/40 flex items-center gap-1 uppercase">
                           <X className="w-3.5 h-3.5" /> Yanlış
                         </span>
                       )}
                       {isEmpty && (
-                        <span className="text-xs font-bold text-slate-400 bg-slate-950 px-2.5 py-0.5 rounded-full border border-slate-800">
+                        <span className="text-xs font-mono font-bold text-zinc-400 bg-zinc-950 px-2.5 py-0.5 rounded-sm border border-zinc-800 uppercase">
                           Boş Bırakıldı
                         </span>
                       )}
                     </div>
 
-                    <span className="text-xs font-semibold text-slate-400">
+                    <span className="text-xs font-mono text-zinc-400">
                       Cevabınız: <strong className={isCorrect ? 'text-emerald-400' : 'text-rose-400'}>{userAns || 'Boş'}</strong> | Doğru: <strong className="text-emerald-400">{q.correctOption}</strong>
                     </span>
                   </div>
 
-                  <div className="text-sm text-slate-200">
+                  <div className="text-sm text-zinc-200">
                     <FormattedMathText text={q.questionText} />
                   </div>
 
                   {/* Explanation Note */}
-                  <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800/80 text-xs text-slate-300 space-y-1">
-                    <strong className="text-indigo-300 font-bold block">💡 Çözüm & Açıklama:</strong>
+                  <div className="p-4 rounded-sm bg-zinc-950 border border-zinc-800 text-xs text-zinc-300 space-y-1">
+                    <strong className="text-zinc-200 font-mono font-bold uppercase block">💡 Çözüm & Açıklama:</strong>
                     <FormattedMathText text={q.explanation} />
                   </div>
                 </div>
@@ -851,7 +851,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
       <div className="bg-[#111115] border border-zinc-800 rounded-sm p-6 sm:p-8 shadow-xl">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2 max-w-2xl">
-            <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block mb-1">
+            <span className="text-[11px] font-mono font-bold tracking-widest text-zinc-400 uppercase block mb-1">
               YKS 2026 DENEME SINAVLARI & PROVA MERKEZİ
             </span>
             <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
@@ -864,8 +864,8 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
           <div className="flex items-center gap-4">
             <div className="p-3.5 bg-zinc-900 border border-zinc-800 rounded-sm text-center min-w-[140px]">
-              <span className="text-[10px] font-bold tracking-wider text-zinc-400 uppercase block">Son Deneme Neti</span>
-              <span className="text-xl font-bold text-amber-300 mt-1 block">
+              <span className="text-[10px] font-mono font-bold tracking-wider text-zinc-400 uppercase block">Son Deneme Neti</span>
+              <span className="text-xl font-mono font-bold text-white mt-1 block">
                 {examHistory[0] ? `${examHistory[0].netScore} Net` : 'Henüz Yok'}
               </span>
             </div>
@@ -877,7 +877,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
       <div className="flex items-center gap-1 p-1 bg-[#111115] border border-zinc-800 rounded-sm">
         <button
           onClick={() => setActiveTab('all')}
-          className={`px-4 py-2 rounded-sm text-xs font-bold tracking-wider uppercase transition-all ${
+          className={`px-4 py-2 rounded-sm text-xs font-mono font-bold tracking-wider uppercase transition-all ${
             activeTab === 'all' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
           }`}
         >
@@ -886,7 +886,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
         <button
           onClick={() => setActiveTab('TYT Genel')}
-          className={`px-4 py-2 rounded-sm text-xs font-bold tracking-wider uppercase transition-all ${
+          className={`px-4 py-2 rounded-sm text-xs font-mono font-bold tracking-wider uppercase transition-all ${
             activeTab === 'TYT Genel' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
           }`}
         >
@@ -895,7 +895,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
         <button
           onClick={() => setActiveTab('AYT Sayısal')}
-          className={`px-4 py-2 rounded-sm text-xs font-bold tracking-wider uppercase transition-all ${
+          className={`px-4 py-2 rounded-sm text-xs font-mono font-bold tracking-wider uppercase transition-all ${
             activeTab === 'AYT Sayısal' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
           }`}
         >
@@ -913,14 +913,14 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
             <div className="space-y-3">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1">
-                  <span className="text-[9px] font-bold tracking-wider px-2 py-0.5 bg-zinc-900 border border-zinc-700 text-zinc-300 rounded-sm uppercase">
+                  <span className="text-[9px] font-mono font-bold tracking-wider px-2 py-0.5 bg-zinc-900 border border-zinc-700 text-zinc-300 rounded-sm uppercase">
                     {exam.type}
                   </span>
                   <h3 className="text-base font-bold text-white pt-1">{exam.title}</h3>
                 </div>
 
-                <div className="flex items-center gap-1 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded-sm text-xs text-amber-300 font-mono">
-                  <Clock className="w-3.5 h-3.5 text-amber-400" />
+                <div className="flex items-center gap-1 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded-sm text-xs text-zinc-300 font-mono">
+                  <Clock className="w-3.5 h-3.5 text-zinc-400" />
                   <span>{exam.durationMinutes} Dk</span>
                 </div>
               </div>
@@ -932,7 +932,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
               {/* Sections Breakdown Pills */}
               <div className="flex items-center gap-2 flex-wrap pt-1">
                 {exam.sections.map((sec, idx) => (
-                  <span key={idx} className="text-[10px] bg-zinc-900 px-2 py-0.5 rounded-sm border border-zinc-800 text-zinc-300">
+                  <span key={idx} className="text-[10px] font-mono bg-zinc-900 px-2 py-0.5 rounded-sm border border-zinc-800 text-zinc-300">
                     <strong>{sec.name}:</strong> {sec.questionCount} Soru
                   </span>
                 ))}
@@ -946,7 +946,7 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
               <button
                 onClick={() => handleStartExam(exam)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-black text-xs font-bold uppercase tracking-wider transition-all"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-black text-xs font-mono font-bold uppercase tracking-wider transition-all"
               >
                 <Play className="w-3.5 h-3.5 fill-black" />
                 <span>Denemeyi Başlat</span>
@@ -958,15 +958,15 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
       {/* History Table if any */}
       {examHistory.length > 0 && (
-        <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-          <h3 className="text-base font-bold text-white flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-emerald-400" />
+        <div className="p-6 rounded-sm bg-[#111115] border border-zinc-800 space-y-4">
+          <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-white flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-zinc-300" />
             <span>Geçmiş Deneme Sonuçlarınız</span>
           </h3>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-300">
-              <thead className="bg-slate-950 text-slate-400 border-b border-slate-800">
+            <table className="w-full text-left text-xs text-zinc-300 border-collapse">
+              <thead className="bg-zinc-900 text-zinc-400 border-b border-zinc-800 font-mono font-bold uppercase text-[10px]">
                 <tr>
                   <th className="p-3">Tarih</th>
                   <th className="p-3">Deneme Adı</th>
@@ -977,16 +977,16 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
                   <th className="p-3 text-right">Tahmini Puan</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/60">
+              <tbody className="divide-y divide-zinc-800/60 font-mono">
                 {examHistory.map((h) => (
-                  <tr key={h.id} className="hover:bg-slate-850/50">
-                    <td className="p-3 text-slate-400">{h.date}</td>
-                    <td className="p-3 font-semibold text-slate-200">{h.examTitle}</td>
+                  <tr key={h.id} className="hover:bg-zinc-900/40">
+                    <td className="p-3 text-zinc-500">{h.date}</td>
+                    <td className="p-3 font-semibold text-zinc-200">{h.examTitle}</td>
                     <td className="p-3 text-center text-emerald-400 font-bold">{h.correct}</td>
                     <td className="p-3 text-center text-rose-400 font-bold">{h.wrong}</td>
-                    <td className="p-3 text-center text-slate-500">{h.empty}</td>
-                    <td className="p-3 text-center font-black text-amber-400">{h.netScore} Net</td>
-                    <td className="p-3 text-right font-bold text-indigo-400">{h.scoreEstimate} P.</td>
+                    <td className="p-3 text-center text-zinc-500">{h.empty}</td>
+                    <td className="p-3 text-center font-bold text-white">{h.netScore} Net</td>
+                    <td className="p-3 text-right font-bold text-zinc-300">{h.scoreEstimate} P.</td>
                   </tr>
                 ))}
               </tbody>
