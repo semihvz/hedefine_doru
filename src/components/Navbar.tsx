@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
-  MonitorSmartphone, 
-  ShieldAlert, 
   LogOut, 
   KeyRound, 
   BookOpen, 
@@ -10,6 +8,8 @@ import {
   Target,
   Flame,
   CheckSquare,
+  MonitorSmartphone,
+  ShieldAlert,
   Menu,
   X
 } from 'lucide-react';
@@ -29,296 +29,171 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
     setIsMobileMenuOpen(false);
   };
 
+  const navItems = [
+    { id: 'quiz', label: 'Soru Bankası', icon: BookOpen },
+    { id: 'denemeler', label: 'Denemeler', icon: Target },
+    { id: 'dersler', label: 'Ders Kataloğu', icon: GraduationCap },
+    { id: 'aliskanliklar', label: 'Alışkanlıklar', icon: Flame },
+    { id: 'todolist', label: 'Görev Planlayıcı', icon: CheckSquare },
+  ];
+
   return (
     <>
-      <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-950/90 border-b border-slate-800/60 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+      <header className="sticky top-0 z-50 w-full bg-[#08080a]/95 border-b border-zinc-800/80 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           
-          {/* Brand Logo */}
+          {/* Brand Logo - BlackRock Style Typography */}
           <div 
             onClick={() => handleNavClick('quiz')}
-            className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-amber-500 via-indigo-600 to-purple-600 p-0.5 shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-slate-950 rounded-[10px] sm:rounded-[14px] flex items-center justify-center">
-                <Target className="w-5 h-5 sm:w-6 sm:h-6 text-amber-400 group-hover:text-indigo-400 transition-colors" />
-              </div>
+            <div className="w-7 h-7 bg-zinc-100 text-black flex items-center justify-center font-black text-xs tracking-tighter rounded-sm">
+              HD
             </div>
-            <div>
-              <h1 className="text-base sm:text-xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-amber-300 leading-tight">
-                Hedefine Doğru <span className="text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">YKS 2026</span>
-              </h1>
-              <p className="text-[10px] sm:text-xs text-slate-400 hidden sm:block">YKS Hazırlık & Deneme Sınavı Platformu</p>
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-bold tracking-widest text-white uppercase">
+                HEDEFİNE DOĞRU
+              </span>
+              <span className="text-zinc-600 text-xs font-light">|</span>
+              <span className="text-[11px] font-medium tracking-wider text-zinc-400 uppercase hidden sm:inline">
+                YKS 2026
+              </span>
             </div>
           </div>
 
-          {/* Desktop Navigation Items */}
-          <nav className="hidden md:flex items-center gap-1.5 p-1.5 rounded-2xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-md">
-            <button
-              onClick={() => handleNavClick('quiz')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                activeTab === 'quiz'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <BookOpen className="w-4 h-4 text-purple-400" />
-              <span>Soru Bankası</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('denemeler')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
-                activeTab === 'denemeler'
-                  ? 'bg-gradient-to-r from-amber-600 via-orange-600 to-rose-600 text-white shadow-md shadow-amber-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <Target className="w-4 h-4 text-amber-400" />
-              <span>Denemeler</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('dersler')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                activeTab === 'dersler'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <GraduationCap className="w-4 h-4 text-indigo-400" />
-              <span>Dersler</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('aliskanliklar')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
-                activeTab === 'aliskanliklar'
-                  ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md shadow-amber-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <Flame className="w-4 h-4 text-amber-400 fill-amber-400/20" />
-              <span>Alışkanlıklar</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('todolist')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                activeTab === 'todolist'
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <CheckSquare className="w-4 h-4 text-emerald-400" />
-              <span>Todo List</span>
-            </button>
+          {/* Desktop Navigation Items - Sleek Horizontal Minimalist Tabs */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`flex items-center gap-2 px-3.5 py-2 text-xs font-medium tracking-wide transition-all border-b-2 ${
+                    isActive
+                      ? 'border-white text-white font-semibold'
+                      : 'border-transparent text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
+                  }`}
+                >
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-zinc-500'}`} />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
 
             {user && (
               <button
                 onClick={() => handleNavClick('sessions')}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                className={`flex items-center gap-2 px-3.5 py-2 text-xs font-medium tracking-wide transition-all border-b-2 ${
                   activeTab === 'sessions'
-                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                    ? 'border-white text-white font-semibold'
+                    : 'border-transparent text-zinc-400 hover:text-zinc-200 hover:border-zinc-700'
                 }`}
               >
-                <MonitorSmartphone className="w-4 h-4" />
-                <span>Oturumlarım</span>
+                <MonitorSmartphone className="w-3.5 h-3.5" />
+                <span>Oturumlar</span>
               </button>
             )}
 
             {user?.role === 'ADMIN' && (
               <button
                 onClick={() => handleNavClick('admin')}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                className={`flex items-center gap-2 px-3.5 py-2 text-xs font-medium tracking-wide transition-all border-b-2 ${
                   activeTab === 'admin'
-                    ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white shadow-md shadow-amber-500/25'
-                    : 'text-amber-400 hover:text-amber-200 hover:bg-amber-950/30'
+                    ? 'border-amber-400 text-amber-300 font-semibold'
+                    : 'border-transparent text-amber-500/70 hover:text-amber-300'
                 }`}
               >
-                <ShieldAlert className="w-4 h-4" />
-                <span>Yönetici Paneli</span>
+                <ShieldAlert className="w-3.5 h-3.5" />
+                <span>Yönetici</span>
               </button>
             )}
           </nav>
 
-          {/* Right Action / Auth Button */}
-          <div className="flex items-center gap-2.5">
+          {/* Right User Actions */}
+          <div className="flex items-center gap-3">
             {user ? (
-              <div className="flex items-center gap-2.5">
-                <div className="hidden sm:flex flex-col items-end">
-                  <span className="text-xs font-bold text-slate-200">{user.full_name}</span>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                    user.role === 'ADMIN' 
-                      ? 'bg-amber-950/60 border-amber-500/40 text-amber-300' 
-                      : 'bg-indigo-950/60 border-indigo-500/40 text-indigo-300'
-                  }`}>
+              <div className="flex items-center gap-3">
+                <div className="hidden sm:flex flex-col items-end leading-none">
+                  <span className="text-xs font-medium text-zinc-200">{user.full_name}</span>
+                  <span className="text-[10px] text-zinc-500 tracking-wider uppercase mt-1">
                     {user.role}
                   </span>
                 </div>
                 <button
                   onClick={logout}
                   title="Çıkış Yap"
-                  className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-rose-400 hover:border-rose-900/50 hover:bg-rose-950/20 transition-all text-xs font-semibold"
+                  className="px-3 py-1.5 border border-zinc-800 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-300 hover:text-white transition-all text-xs font-medium tracking-wide rounded-sm flex items-center gap-1.5"
                 >
-                  <LogOut className="w-4 h-4" />
+                  <LogOut className="w-3.5 h-3.5" />
                   <span className="hidden sm:inline">Çıkış</span>
                 </button>
               </div>
             ) : (
               <button
                 onClick={onOpenAuthModal}
-                className="flex items-center gap-1.5 px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-xs sm:text-sm shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 transition-all"
+                className="px-4 py-1.5 bg-zinc-100 text-black hover:bg-white transition-all text-xs font-bold tracking-wide rounded-sm flex items-center gap-1.5"
               >
-                <KeyRound className="w-4 h-4" />
+                <KeyRound className="w-3.5 h-3.5" />
                 <span>Giriş Yap</span>
               </button>
             )}
 
-            {/* Mobile Menu Hamburger Trigger */}
+            {/* Mobile Hamburger Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white md:hidden transition-colors"
-              title="Menüyü Aç"
+              className="p-2 border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white md:hidden rounded-sm"
             >
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Slide-Down Drawer Overlay */}
+        {/* Mobile Dropdown */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-800 bg-slate-950/98 p-4 space-y-2 animate-fade-in shadow-2xl">
-            <button
-              onClick={() => handleNavClick('quiz')}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                activeTab === 'quiz' ? 'bg-indigo-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-              }`}
-            >
-              <BookOpen className="w-4 h-4 text-purple-400" />
-              <span>Soru Bankası</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('denemeler')}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                activeTab === 'denemeler' ? 'bg-amber-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-              }`}
-            >
-              <Target className="w-4 h-4 text-amber-400" />
-              <span>Denemeler (YKS Mock Sınavlar)</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('dersler')}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                activeTab === 'dersler' ? 'bg-indigo-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-              }`}
-            >
-              <GraduationCap className="w-4 h-4 text-indigo-400" />
-              <span>Dersler (TYT & AYT Kataloğu)</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('aliskanliklar')}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                activeTab === 'aliskanliklar' ? 'bg-amber-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-              }`}
-            >
-              <Flame className="w-4 h-4 text-amber-400" />
-              <span>Alışkanlıklar (Zinciri Kırma)</span>
-            </button>
-
-            <button
-              onClick={() => handleNavClick('todolist')}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                activeTab === 'todolist' ? 'bg-emerald-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-              }`}
-            >
-              <CheckSquare className="w-4 h-4 text-emerald-400" />
-              <span>Todo List (Yapılacaklar)</span>
-            </button>
-
-            {user && (
-              <button
-                onClick={() => handleNavClick('sessions')}
-                className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                  activeTab === 'sessions' ? 'bg-indigo-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-                }`}
-              >
-                <MonitorSmartphone className="w-4 h-4" />
-                <span>Oturumlarım</span>
-              </button>
-            )}
-
-            {user?.role === 'ADMIN' && (
-              <button
-                onClick={() => handleNavClick('admin')}
-                className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                  activeTab === 'admin' ? 'bg-amber-600 text-white' : 'text-amber-300 bg-amber-950/40 border border-amber-500/30'
-                }`}
-              >
-                <ShieldAlert className="w-4 h-4" />
-                <span>Yönetici Paneli</span>
-              </button>
-            )}
+          <div className="md:hidden border-t border-zinc-800 bg-[#08080a] p-3 space-y-1 animate-fade-in">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 text-xs font-medium tracking-wide text-left transition-all ${
+                    activeTab === item.id 
+                      ? 'bg-zinc-800 text-white font-semibold' 
+                      : 'text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
           </div>
         )}
       </header>
 
-      {/* Sticky Bottom Mobile Navigation Bar (Smartphones) */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 border-t border-slate-800/80 backdrop-blur-xl flex items-center justify-around py-2 px-1 shadow-2xl">
-        <button
-          onClick={() => handleNavClick('quiz')}
-          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
-            activeTab === 'quiz' ? 'text-purple-400 font-bold' : 'text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <BookOpen className="w-5 h-5" />
-          <span className="text-[10px]">Sorular</span>
-        </button>
-
-        <button
-          onClick={() => handleNavClick('denemeler')}
-          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
-            activeTab === 'denemeler' ? 'text-amber-400 font-bold' : 'text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <Target className="w-5 h-5" />
-          <span className="text-[10px]">Deneme</span>
-        </button>
-
-        <button
-          onClick={() => handleNavClick('dersler')}
-          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
-            activeTab === 'dersler' ? 'text-indigo-400 font-bold' : 'text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <GraduationCap className="w-5 h-5" />
-          <span className="text-[10px]">Dersler</span>
-        </button>
-
-        <button
-          onClick={() => handleNavClick('aliskanliklar')}
-          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
-            activeTab === 'aliskanliklar' ? 'text-amber-400 font-bold' : 'text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <Flame className="w-5 h-5" />
-          <span className="text-[10px]">Alışkanlık</span>
-        </button>
-
-        <button
-          onClick={() => handleNavClick('todolist')}
-          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
-            activeTab === 'todolist' ? 'text-emerald-400 font-bold' : 'text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <CheckSquare className="w-5 h-5" />
-          <span className="text-[10px]">Todo</span>
-        </button>
+      {/* Mobile Bottom Bar */}
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#08080a]/95 border-t border-zinc-800 flex items-center justify-around py-2 px-1 backdrop-blur-md">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleNavClick(item.id)}
+              className={`flex flex-col items-center gap-1 py-1 px-2 transition-all ${
+                isActive ? 'text-white font-bold' : 'text-zinc-500 hover:text-zinc-300'
+              }`}
+            >
+              <Icon className="w-4 h-4" />
+              <span className="text-[10px] tracking-tight">{item.label}</span>
+            </button>
+          );
+        })}
       </nav>
     </>
   );
 };
+

@@ -103,9 +103,9 @@ export const AskAiSelectionTooltip: React.FC = () => {
           <button
             onClick={handleOpenAiModal}
             onMouseDown={(e) => e.preventDefault()} // Prevent losing selection on click
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold text-xs shadow-xl shadow-indigo-500/40 border border-white/20 hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-zinc-100 hover:bg-white text-black font-bold text-xs uppercase tracking-wider shadow-2xl border border-zinc-300 cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-amber-300 group-hover:rotate-12 transition-transform" />
+            <Sparkles className="w-3.5 h-3.5 text-black" />
             <span>AI'ya Sor</span>
           </button>
         </div>
