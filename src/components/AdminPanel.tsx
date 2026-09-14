@@ -32,14 +32,17 @@ export const AdminPanel: React.FC = () => {
     <div className="space-y-6 animate-fade-in">
       
       {/* Header Banner */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-amber-950/40 via-slate-900 to-slate-900 border border-amber-500/30 shadow-xl">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 rounded-sm bg-[#111115] border border-zinc-800 shadow-xl">
         <div className="flex items-center gap-4">
-          <div className="p-3 rounded-2xl bg-amber-500/10 text-amber-400 border border-amber-500/30">
-            <ShieldAlert className="w-6 h-6" />
+          <div className="p-2.5 rounded-sm bg-zinc-900 text-amber-400 border border-zinc-800">
+            <ShieldAlert className="w-5 h-5 text-amber-400" />
           </div>
           <div>
-            <h2 className="text-xl font-bold text-slate-100">Yönetici Paneli (Admin Console)</h2>
-            <p className="text-xs text-slate-400">Sistemdeki kullanıcıları, yetkileri, aktif oturumları ve güvenlik denetim kayıtlarını yönetin.</p>
+            <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block mb-1">
+              YÖNETİM VE DENETİM PORTALI
+            </span>
+            <h2 className="text-xl font-bold text-white tracking-tight">Yönetici Paneli (Admin Console)</h2>
+            <p className="text-xs text-zinc-400">Sistemdeki kullanıcıları, yetkileri ve güvenlik denetim kayıtlarını yönetin.</p>
           </div>
         </div>
 
@@ -49,7 +52,7 @@ export const AdminPanel: React.FC = () => {
               fetchAdminUsers();
               fetchAdminAuditLogs();
             }}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-colors"
+            className="flex items-center gap-2 px-4 py-2 rounded-sm bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 text-xs font-bold uppercase tracking-wider transition-colors"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Yenile</span>

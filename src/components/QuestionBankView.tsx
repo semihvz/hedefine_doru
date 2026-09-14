@@ -198,26 +198,29 @@ export const QuestionBankView: React.FC<{ onOpenAuthModal: () => void }> = ({ on
     <div className="space-y-8 animate-fade-in">
       
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-8 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950/60 to-purple-950/40 border border-slate-800 shadow-xl">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-6 sm:p-8 rounded-sm bg-[#111115] border border-zinc-800 shadow-xl">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 p-0.5 shadow-lg shadow-indigo-500/20">
-            <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center text-indigo-300">
-              <BookOpen className="w-7 h-7" />
-            </div>
+          <div className="w-12 h-12 rounded-sm bg-zinc-900 border border-zinc-700 flex items-center justify-center text-white">
+            <BookOpen className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-slate-100">Interaktif Soru Bankası & Test Çözücü</h2>
-            <p className="text-xs text-slate-400 mt-1">Soru numarası, metni, A-E şıkları ve detaylı çözümleri ile veritabanı destekli sınav modülü.</p>
+            <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block mb-1">
+              SINAV VE SORU MODÜLÜ
+            </span>
+            <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              Soru Bankası & Test Çözücü
+            </h2>
+            <p className="text-xs text-zinc-400 mt-1">ÖSYM formatındaki sınav soruları ve detaylı çözümler.</p>
           </div>
         </div>
 
         {user?.role === 'ADMIN' && (
           <button
             onClick={() => setIsAddQuestionModalOpen(true)}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-rose-600 text-white text-xs font-semibold shadow-lg shadow-amber-500/20 hover:scale-[1.02] transition-all"
+            className="flex items-center gap-2 px-4 py-2 rounded-sm bg-zinc-100 hover:bg-white text-black text-xs font-bold uppercase tracking-wider transition-all"
           >
             <PlusCircle className="w-4 h-4" />
-            <span>Yeni Soru Ekle (Admin)</span>
+            <span>Yeni Soru Ekle</span>
           </button>
         )}
       </div>
@@ -225,39 +228,39 @@ export const QuestionBankView: React.FC<{ onOpenAuthModal: () => void }> = ({ on
       {/* VIEW 1: SELECT A QUIZ */}
       {!selectedQuiz && (
         <div className="space-y-6">
-          <h3 className="text-lg font-bold text-slate-200 flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-indigo-400" />
-            <span>Mevcut Soru Bankaları ve Testler</span>
+          <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-white" />
+            <span>Mevcut Soru Bankaları</span>
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {quizzes.map((quiz) => (
               <div
                 key={quiz.id}
-                className="p-6 rounded-3xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/40 shadow-xl transition-all flex flex-col justify-between space-y-4 group"
+                className="p-6 rounded-sm bg-[#111115] border border-zinc-800 hover:border-zinc-600 shadow-xl transition-all flex flex-col justify-between space-y-4 group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-indigo-950 border border-indigo-500/30 text-indigo-300">
-                      {quiz.category}
+                    <span className="px-2.5 py-0.5 rounded-sm text-[10px] font-bold tracking-wider uppercase bg-zinc-900 border border-zinc-700 text-zinc-300">
+                      {quiz.category || 'ÖSYM'}
                     </span>
-                    <span className="text-xs font-mono text-slate-400">
-                      {quiz.question_count || 0} Soru
+                    <span className="text-[11px] text-zinc-500 font-mono">
+                      {quiz.question_count ? `${quiz.question_count} Soru` : 'ÖSYM Soru Bankası'}
                     </span>
                   </div>
-                  <h4 className="text-lg font-bold text-slate-100 group-hover:text-indigo-300 transition-colors">
+                  <h4 className="text-base font-bold text-white tracking-tight group-hover:text-zinc-200 transition-colors">
                     {quiz.title}
                   </h4>
-                  <p className="text-xs text-slate-400 mt-2 leading-relaxed">
-                    {quiz.description}
+                  <p className="text-xs text-zinc-400 mt-2 leading-relaxed">
+                    {quiz.description || 'TYT / AYT hazırlığı için özel hazırlanmış sınav soruları.'}
                   </p>
                 </div>
 
                 <button
                   onClick={() => handleStartQuiz(quiz)}
-                  className="w-full py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-black font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
                 >
-                  <span>Testi Çözmeye Başla</span>
+                  <span>Testi Başlat</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>

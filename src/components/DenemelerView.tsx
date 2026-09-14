@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { 
   Target, 
   Clock, 
-  CheckCircle2, 
   Play, 
   ChevronRight, 
   ChevronLeft, 
@@ -724,15 +723,14 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
       <div className="space-y-8 animate-fade-in pb-16">
         
         {/* Result Header Card */}
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-purple-950 border border-indigo-500/20 p-8 shadow-2xl">
-          <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="bg-[#111115] border border-zinc-800 rounded-sm p-6 sm:p-8 shadow-xl">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2">
-              <span className="text-xs font-bold text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/30 inline-flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5" />
-                <span>Deneme Sınavı Tamamlandı!</span>
+              <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block mb-1">
+                DENEME SINAVI SONUÇ KARNESİ
               </span>
-              <h1 className="text-3xl font-extrabold text-white">{activeExam.title}</h1>
-              <p className="text-xs text-slate-400">Sonuçlarınız hesaplandı ve başarı analizinize eklendi.</p>
+              <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{activeExam.title}</h1>
+              <p className="text-xs text-zinc-400">Sonuçlarınız hesaplandı ve başarı analizinize eklendi.</p>
             </div>
 
             <button
@@ -740,23 +738,23 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
                 setActiveExam(null);
                 setIsExamFinished(false);
               }}
-              className="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all"
+              className="px-4 py-2 rounded-sm bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-200 text-xs font-bold uppercase tracking-wider transition-all"
             >
-              ← Denemeler Listesine Dön
+              ← Listeye Dön
             </button>
           </div>
         </div>
 
         {/* Score Breakdown Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 text-center">
-            <span className="text-xs text-slate-400 font-medium block">Toplam Net</span>
-            <span className="text-3xl font-black text-amber-400 mt-1 block">{examResult.netScore} Net</span>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          <div className="p-4 rounded-sm bg-[#111115] border border-zinc-800 text-center">
+            <span className="text-[10px] text-zinc-400 font-bold uppercase block">Toplam Net</span>
+            <span className="text-2xl font-bold text-amber-300 mt-1 block">{examResult.netScore} Net</span>
           </div>
 
-          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 text-center">
-            <span className="text-xs text-slate-400 font-medium block">Doğru Sayısı</span>
-            <span className="text-3xl font-black text-emerald-400 mt-1 block">{examResult.correctCount}</span>
+          <div className="p-4 rounded-sm bg-[#111115] border border-zinc-800 text-center">
+            <span className="text-[10px] text-zinc-400 font-bold uppercase block">Doğru Sayısı</span>
+            <span className="text-2xl font-bold text-white mt-1 block">{examResult.correctCount}</span>
           </div>
 
           <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 text-center">
@@ -847,32 +845,28 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
   // ==================== MAIN DENEMELER LIST VIEW ====================
   return (
-    <div className="space-y-8 animate-fade-in pb-12">
+    <div className="space-y-6 animate-fade-in pb-12">
       
       {/* Welcome Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-amber-950 to-purple-950 border border-amber-500/20 p-8 shadow-2xl">
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 text-xs font-semibold">
-              <Target className="w-3.5 h-3.5" />
-              <span>YKS 2026 Deneme Sınavları & Prova Merkezi</span>
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-amber-100 to-indigo-200">
+      <div className="bg-[#111115] border border-zinc-800 rounded-sm p-6 sm:p-8 shadow-xl">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-2xl">
+            <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block mb-1">
+              YKS 2026 DENEME SINAVLARI & PROVA MERKEZİ
+            </span>
+            <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
               Hedefine Doğru Denemeler
             </h1>
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-zinc-400 text-xs leading-relaxed">
               ÖSYM sınav süresi ve kurallarına tam uyumlu TYT, AYT ve Branş Deneme Sınavları. Gerçek zamanlı optik form ve anlık net analizi.
             </p>
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="p-4 rounded-2xl bg-slate-900/90 border border-amber-500/30 text-center min-w-[140px] shadow-xl">
-              <span className="text-xs text-slate-400 block font-medium">Son Deneme Neti</span>
-              <span className="text-2xl font-black text-amber-400 mt-1 block">
+            <div className="p-3.5 bg-zinc-900 border border-zinc-800 rounded-sm text-center min-w-[140px]">
+              <span className="text-[10px] font-bold tracking-wider text-zinc-400 uppercase block">Son Deneme Neti</span>
+              <span className="text-xl font-bold text-amber-300 mt-1 block">
                 {examHistory[0] ? `${examHistory[0].netScore} Net` : 'Henüz Yok'}
-              </span>
-              <span className="text-[10px] text-slate-500 block mt-0.5">
-                {examHistory[0] ? examHistory[0].date : 'İlk denemenizi çözün'}
               </span>
             </div>
           </div>
@@ -880,11 +874,11 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
       </div>
 
       {/* Tabs Filter */}
-      <div className="inline-flex p-1.5 rounded-2xl bg-slate-900 border border-slate-800 backdrop-blur-md">
+      <div className="flex items-center gap-1 p-1 bg-[#111115] border border-zinc-800 rounded-sm">
         <button
           onClick={() => setActiveTab('all')}
-          className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeTab === 'all' ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+          className={`px-4 py-2 rounded-sm text-xs font-bold tracking-wider uppercase transition-all ${
+            activeTab === 'all' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
           }`}
         >
           Tüm Denemeler ({SAMPLE_DENEMELER.length})
@@ -892,69 +886,69 @@ export const DenemelerView: React.FC<DenemelerViewProps> = () => {
 
         <button
           onClick={() => setActiveTab('TYT Genel')}
-          className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeTab === 'TYT Genel' ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+          className={`px-4 py-2 rounded-sm text-xs font-bold tracking-wider uppercase transition-all ${
+            activeTab === 'TYT Genel' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
           }`}
         >
-          TYT Genel Denemeleri
+          TYT Genel
         </button>
 
         <button
           onClick={() => setActiveTab('AYT Sayısal')}
-          className={`px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
-            activeTab === 'AYT Sayısal' ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+          className={`px-4 py-2 rounded-sm text-xs font-bold tracking-wider uppercase transition-all ${
+            activeTab === 'AYT Sayısal' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
           }`}
         >
-          AYT Sayısal Denemeleri
+          AYT Sayısal
         </button>
       </div>
 
       {/* Exams Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredExams.map((exam) => (
           <div
             key={exam.id}
-            className={`rounded-3xl bg-slate-900/90 border p-6 flex flex-col justify-between transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl ${exam.colorGradient}`}
+            className="rounded-sm bg-[#111115] border border-zinc-800 p-6 flex flex-col justify-between transition-all hover:border-zinc-700 space-y-4"
           >
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-1">
-                  <span className={`text-[11px] font-bold px-3 py-1 rounded-full border ${exam.badgeColor}`}>
+                  <span className="text-[9px] font-bold tracking-wider px-2 py-0.5 bg-zinc-900 border border-zinc-700 text-zinc-300 rounded-sm uppercase">
                     {exam.type}
                   </span>
-                  <h3 className="text-xl font-bold text-white pt-1">{exam.title}</h3>
+                  <h3 className="text-base font-bold text-white pt-1">{exam.title}</h3>
                 </div>
 
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-amber-300 font-mono font-bold">
+                <div className="flex items-center gap-1 px-2.5 py-1 bg-zinc-900 border border-zinc-800 rounded-sm text-xs text-amber-300 font-mono">
                   <Clock className="w-3.5 h-3.5 text-amber-400" />
                   <span>{exam.durationMinutes} Dk</span>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-zinc-400 leading-relaxed">
                 {exam.description}
               </p>
 
               {/* Sections Breakdown Pills */}
               <div className="flex items-center gap-2 flex-wrap pt-1">
                 {exam.sections.map((sec, idx) => (
-                  <span key={idx} className="text-[11px] font-semibold bg-slate-950 px-2.5 py-1 rounded-lg border border-slate-800/80 text-slate-300">
-                    <strong className={sec.color}>{sec.name}:</strong> {sec.questionCount} Soru
+                  <span key={idx} className="text-[10px] bg-zinc-900 px-2 py-0.5 rounded-sm border border-zinc-800 text-zinc-300">
+                    <strong>{sec.name}:</strong> {sec.questionCount} Soru
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-slate-800/80">
-              <span className="text-xs text-slate-400 font-medium">
-                Toplam <strong className="text-slate-200">{exam.totalQuestions} Soru</strong>
+            <div className="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-zinc-800/80">
+              <span className="text-xs text-zinc-400 font-medium">
+                Toplam <strong className="text-zinc-200">{exam.totalQuestions} Soru</strong>
               </span>
 
               <button
                 onClick={() => handleStartExam(exam)}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 via-orange-600 to-rose-600 hover:from-amber-400 hover:to-rose-500 text-white text-xs font-bold shadow-lg shadow-amber-500/20 transition-all hover:scale-105 active:scale-95"
+                className="flex items-center gap-2 px-5 py-2.5 rounded-sm bg-zinc-100 hover:bg-white text-black text-xs font-bold uppercase tracking-wider transition-all"
               >
-                <Play className="w-4 h-4 fill-white" />
+                <Play className="w-3.5 h-3.5 fill-black" />
                 <span>Denemeyi Başlat</span>
               </button>
             </div>

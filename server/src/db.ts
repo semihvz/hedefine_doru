@@ -77,7 +77,7 @@ export function initDatabase() {
     )
   `);
 
-  // 6. Questions Table (Soru Numarası, Soru Metni, Çözüm Açıklaması, Konu Anlatımı)
+  // 6. Questions Table (Soru Numarası, Soru Metni, Çözüm Açıklaması, Konu Anlatımı, Video Anlatımı)
   db.exec(`
     CREATE TABLE IF NOT EXISTS questions (
       id TEXT PRIMARY KEY,
@@ -86,18 +86,20 @@ export function initDatabase() {
       question_text TEXT NOT NULL,
       explanation TEXT,
       topic_summary TEXT,
+      video_url TEXT,
       points INTEGER DEFAULT 10,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE
     )
   `);
 
-  // Automatic Migration for existing DB instances (Add topic_summary column if missing)
+  // Automatic Migration for existing DB instances (Add topic_summary & video_url columns if missing)
   try {
     db.exec(`ALTER TABLE questions ADD COLUMN topic_summary TEXT;`);
-    console.log('🔄 Migration: Added topic_summary column to questions table.');
-  } catch (e) {
-    // Column already exists, safe to ignore
+  } catch (e) {}
+  try {
+    db.exec(`ALTER TABLE questions ADD COLUMN video_url TEXT;`);
+  } catch (e) {}
   }
 
   // 7. Question Options Table (A, B, C, D, E Şıkları & Doğru Cevap)

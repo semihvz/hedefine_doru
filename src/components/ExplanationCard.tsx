@@ -15,7 +15,8 @@ import {
   FileText,
   AlertTriangle,
   Check,
-  Clock
+  Clock,
+  Video
 } from 'lucide-react';
 import type { Question } from '../types/quiz';
 import { FormattedMathText } from './FormattedMathText';
@@ -39,6 +40,8 @@ export const ExplanationCard: React.FC<ExplanationCardProps> = ({
 }) => {
   const isCorrect = userAnswerId === question.correctOptionId;
   const [showFullLessonModal, setShowFullLessonModal] = useState<boolean>(false);
+  const [showVideoModal, setShowVideoModal] = useState<boolean>(false);
+  const videoSrc = question.video_url || question.videoUrl || (question.id === 'q-math-1' ? '/videos/q-math-1_solution.mp4' : undefined);
 
   useEffect(() => {
     if (isCorrect) {
@@ -140,6 +143,16 @@ export const ExplanationCard: React.FC<ExplanationCardProps> = ({
 
       {/* Bottom Action Toolbar */}
       <div className="explanation-actions">
+        {videoSrc && (
+          <button 
+            className="video-solution-btn glowing-btn"
+            onClick={() => setShowVideoModal(true)}
+          >
+            <Video className="btn-icon text-cyan" />
+            <span>🎥 Videolu Anlatım (HD)</span>
+          </button>
+        )}
+
         <button 
           className="lesson-explain-btn"
           onClick={() => setShowFullLessonModal(true)}
@@ -239,6 +252,47 @@ export const ExplanationCard: React.FC<ExplanationCardProps> = ({
             <div className="modal-footer">
               <button className="primary-modal-btn" onClick={() => setShowFullLessonModal(false)}>
                 Anladım, Kapat
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* FULL VIDEO SOLUTION MODAL */}
+      {showVideoModal && videoSrc && (
+        <div className="modal-overlay" onClick={() => setShowVideoModal(false)}>
+          <div className="modal-content video-solution-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <div className="modal-title-group">
+                <Video className="modal-icon text-cyan" />
+                <div>
+                  <h2>🎥 Videolu Çözüm Anlatımı (HD)</h2>
+                  <p className="modal-subtitle">{question.topic} — Sesli & Görsel Adım Adım Çözüm</p>
+                </div>
+              </div>
+              <button className="close-btn" onClick={() => setShowVideoModal(false)}>
+                <X />
+              </button>
+            </div>
+
+            <div className="modal-body video-player-body">
+              <div className="video-wrapper">
+                <video 
+                  controls 
+                  autoPlay 
+                  playsInline 
+                  className="math-video-element"
+                  src={videoSrc}
+                >
+                  Tarayıcınız video oynatmayı desteklemiyor.
+                </video>
+              </div>
+            </div>
+
+            <div className="modal-footer flex-between">
+              <span className="video-info-badge">🔊 Türkçe Seslendirme & HD Görsel Animasyon</span>
+              <button className="primary-modal-btn" onClick={() => setShowVideoModal(false)}>
+                Kapat
               </button>
             </div>
           </div>

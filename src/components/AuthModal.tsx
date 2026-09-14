@@ -88,52 +88,52 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-slate-900/90 border border-slate-800 shadow-2xl shadow-indigo-500/10">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+      <div className="relative w-full max-w-md overflow-hidden rounded-sm bg-[#111115] border border-zinc-800 shadow-2xl">
         
         {/* Header bar */}
-        <div className="flex items-center justify-between px-6 py-5 border-b border-slate-800/80 bg-slate-950/40">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-zinc-800 bg-zinc-900">
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-              <KeyRound className="w-5 h-5" />
+            <div className="p-1.5 rounded-sm bg-zinc-800 text-white border border-zinc-700">
+              <KeyRound className="w-4 h-4" />
             </div>
-            <h2 className="text-lg font-bold text-slate-100">
-              {tab === 'login' && 'Giriş Yap'}
-              {tab === 'register' && 'Yeni Hesap Oluştur'}
-              {tab === 'forgot' && 'Şifremi Unuttum'}
-              {tab === 'reset' && 'Şifreyi Sıfırla'}
+            <h2 className="text-sm font-bold uppercase tracking-wider text-white">
+              {tab === 'login' && 'Kullanıcı Girişi'}
+              {tab === 'register' && 'Yeni Kayıt'}
+              {tab === 'forgot' && 'Şifre Sıfırlama'}
+              {tab === 'reset' && 'Şifre Güncelleme'}
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-xl transition-colors"
+            className="p-1 text-zinc-400 hover:text-white rounded-sm transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Tab Selector */}
-        <div className="flex p-2 gap-1 bg-slate-950/60 border-b border-slate-800/50">
+        <div className="flex p-1.5 gap-1 bg-zinc-950 border-b border-zinc-800">
           <button
             onClick={() => setTab('login')}
-            className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all ${
-              tab === 'login' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+            className={`flex-1 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider transition-all ${
+              tab === 'login' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
-            Giriş Yap
+            Giriş
           </button>
           <button
             onClick={() => setTab('register')}
-            className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all ${
-              tab === 'register' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+            className={`flex-1 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider transition-all ${
+              tab === 'register' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
             Kayıt Ol
           </button>
           <button
             onClick={() => setTab('forgot')}
-            className={`flex-1 py-2 rounded-xl text-xs font-semibold transition-all ${
-              tab === 'forgot' || tab === 'reset' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
+            className={`flex-1 py-1.5 rounded-sm text-xs font-bold uppercase tracking-wider transition-all ${
+              tab === 'forgot' || tab === 'reset' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-zinc-200'
             }`}
           >
             Sıfırla
@@ -145,23 +145,23 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           
           {/* Quick Demo Fill Buttons */}
           {(tab === 'login' || tab === 'register') && (
-            <div className="mb-6 p-3 rounded-2xl bg-indigo-950/30 border border-indigo-500/20">
-              <div className="flex items-center gap-1.5 mb-2 text-xs font-semibold text-indigo-300">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Hızlı Test Hesapları (Tek Tıkla Giriş)</span>
+            <div className="mb-5 p-3 rounded-sm bg-zinc-900 border border-zinc-800">
+              <div className="flex items-center gap-1.5 mb-2 text-xs font-semibold text-zinc-300">
+                <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                <span>Hızlı Demo Girişleri</span>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={() => fillDemoAccount('USER')}
-                  className="py-1.5 px-3 rounded-xl bg-indigo-900/40 hover:bg-indigo-900/80 border border-indigo-500/30 text-indigo-200 text-xs font-medium transition-all"
+                  className="py-1.5 px-3 rounded-sm bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 text-xs font-medium transition-all"
                 >
-                  👤 Kullanıcı Demosu
+                  👤 Öğrenci Demosu
                 </button>
                 <button
                   type="button"
                   onClick={() => fillDemoAccount('ADMIN')}
-                  className="py-1.5 px-3 rounded-xl bg-amber-900/40 hover:bg-amber-900/80 border border-amber-500/30 text-amber-200 text-xs font-medium transition-all"
+                  className="py-1.5 px-3 rounded-sm bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-amber-300 text-xs font-medium transition-all"
                 >
                   👑 Admin Demosu
                 </button>
@@ -173,40 +173,40 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
           {tab === 'login' && (
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1.5">E-Posta Adresi</label>
+                <label className="block text-xs font-medium text-zinc-300 mb-1">E-Posta Adresi</label>
                 <div className="relative">
-                  <Mail className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <Mail className="absolute left-3 top-2.5 w-4 h-4 text-zinc-500" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="ornek@domain.com"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full pl-9 pr-3 py-2 rounded-sm bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-600 transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between items-center mb-1.5">
-                  <label className="block text-xs font-semibold text-slate-300">Şifre</label>
+                <div className="flex justify-between items-center mb-1">
+                  <label className="block text-xs font-medium text-zinc-300">Şifre</label>
                   <button
                     type="button"
                     onClick={() => setTab('forgot')}
-                    className="text-xs text-indigo-400 hover:underline"
+                    className="text-xs text-zinc-400 hover:text-white hover:underline"
                   >
                     Şifremi Unuttum?
                   </button>
                 </div>
                 <div className="relative">
-                  <Lock className="absolute left-3.5 top-3 w-4 h-4 text-slate-500" />
+                  <Lock className="absolute left-3 top-2.5 w-4 h-4 text-zinc-500" />
                   <input
                     type="password"
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                    className="w-full pl-9 pr-3 py-2 rounded-sm bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-500 text-xs focus:outline-none focus:border-zinc-600 transition-colors"
                   />
                 </div>
               </div>
@@ -214,9 +214,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full py-3 mt-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                className="w-full py-2.5 mt-2 rounded-sm bg-zinc-100 hover:bg-white text-black font-bold text-xs uppercase tracking-wider shadow-lg disabled:opacity-50 transition-all flex items-center justify-center gap-2"
               >
-                {submitting ? <RefreshCw className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
+                {submitting ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <ArrowRight className="w-3.5 h-3.5" />}
                 <span>Giriş Yap</span>
               </button>
             </form>

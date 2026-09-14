@@ -27,6 +27,8 @@ export interface Question {
   question?: string;
   explanation?: any;
   topic_summary?: string;
+  video_url?: string;
+  videoUrl?: string;
   points?: number;
   options: QuestionOption[];
   correctOption?: string;

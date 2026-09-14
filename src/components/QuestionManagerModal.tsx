@@ -110,25 +110,27 @@ export const QuestionManagerModal: React.FC<QuestionManagerModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl bg-slate-900/95 border border-amber-500/30 shadow-2xl shadow-amber-500/10 p-6 space-y-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
+      <div className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-sm bg-[#111115] border border-zinc-800 shadow-2xl p-6 space-y-6">
         
         {/* Header bar */}
-        <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <PlusCircle className="w-5 h-5" />
+            <div className="p-2 rounded-sm bg-zinc-900 text-amber-400 border border-zinc-800">
+              <PlusCircle className="w-5 h-5 text-amber-400" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-slate-100">Yeni Soru & Şık Ekle (Admin)</h3>
-              <p className="text-xs text-slate-400">Veritabanına soru numarası, metni, A-E şıkları ve doğru cevabı kaydedin.</p>
+              <span className="text-[11px] font-bold tracking-widest text-zinc-400 uppercase block">
+                YÖNETİCİ MODÜLÜ
+              </span>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-white">Yeni Soru & Şık Ekle</h3>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-slate-200 hover:bg-slate-800 rounded-xl transition-colors"
+            className="p-1 text-zinc-400 hover:text-white rounded-sm transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 

@@ -30,7 +30,7 @@ router.get('/:id/questions', (req, res) => {
   }
 
   const questions = db.prepare(`
-    SELECT id, quiz_id, question_number, question_text, explanation, topic_summary, points
+    SELECT id, quiz_id, question_number, question_text, explanation, topic_summary, video_url, points
     FROM questions
     WHERE quiz_id = ?
     ORDER BY question_number ASC

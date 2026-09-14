@@ -20,7 +20,7 @@ const MainContent: React.FC = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-[#08080a] text-zinc-100 flex flex-col font-sans selection:bg-zinc-700 selection:text-white">
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -57,8 +57,8 @@ const MainContent: React.FC = () => {
         )}
       </main>
 
-      <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">
-        <p>Hedefine Doğru • YKS Deneme Sınavları & Güvenli Akıllı Öğrenme Platformu © 2026</p>
+      <footer className="border-t border-zinc-900 bg-[#08080a] py-6 text-center text-xs text-zinc-500 font-medium tracking-wider uppercase">
+        <p>HEDEFİNE DOĞRU • YKS DENEME & AKILLI ÖĞRENME PLATFORMU © 2026</p>
       </footer>
 
       <AuthModal
