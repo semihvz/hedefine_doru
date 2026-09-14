@@ -7,6 +7,8 @@ import { AdminPanel } from './components/AdminPanel';
 import { QuestionBankView } from './components/QuestionBankView';
 import { DerslerView } from './components/DerslerView';
 import { DenemelerView } from './components/DenemelerView';
+import { HabitsTrackerView } from './components/HabitsTrackerView';
+import { DailyPlannerView } from './components/DailyPlannerView';
 import { ToastContainer } from './components/ToastContainer';
 import { AskAiSelectionTooltip } from './components/AskAiSelectionTooltip';
 
@@ -37,6 +39,8 @@ const MainContent: React.FC = () => {
             onOpenAuthModal={() => setIsAuthModalOpen(true)}
           />
         )}
+        {activeTab === 'aliskanliklar' && <HabitsTrackerView />}
+        {activeTab === 'todolist' && <DailyPlannerView />}
         {activeTab === 'sessions' && <SessionsView />}
         {activeTab === 'admin' && <AdminPanel />}
       </main>

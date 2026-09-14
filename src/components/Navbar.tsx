@@ -8,6 +8,8 @@ import {
   BookOpen, 
   GraduationCap, 
   Target,
+  Flame,
+  CheckSquare,
   Menu,
   X
 } from 'lucide-react';
@@ -86,6 +88,30 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
             >
               <GraduationCap className="w-4 h-4 text-indigo-400" />
               <span>Dersler</span>
+            </button>
+
+            <button
+              onClick={() => handleNavClick('aliskanliklar')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 ${
+                activeTab === 'aliskanliklar'
+                  ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-md shadow-amber-500/25'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+              }`}
+            >
+              <Flame className="w-4 h-4 text-amber-400 fill-amber-400/20" />
+              <span>Alışkanlıklar</span>
+            </button>
+
+            <button
+              onClick={() => handleNavClick('todolist')}
+              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                activeTab === 'todolist'
+                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/25'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+              }`}
+            >
+              <CheckSquare className="w-4 h-4 text-emerald-400" />
+              <span>Todo List</span>
             </button>
 
             {user && (
@@ -194,6 +220,26 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
               <span>Dersler (TYT & AYT Kataloğu)</span>
             </button>
 
+            <button
+              onClick={() => handleNavClick('aliskanliklar')}
+              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
+                activeTab === 'aliskanliklar' ? 'bg-amber-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
+              }`}
+            >
+              <Flame className="w-4 h-4 text-amber-400" />
+              <span>Alışkanlıklar (Zinciri Kırma)</span>
+            </button>
+
+            <button
+              onClick={() => handleNavClick('todolist')}
+              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
+                activeTab === 'todolist' ? 'bg-emerald-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
+              }`}
+            >
+              <CheckSquare className="w-4 h-4 text-emerald-400" />
+              <span>Todo List (Yapılacaklar)</span>
+            </button>
+
             {user && (
               <button
                 onClick={() => handleNavClick('sessions')}
@@ -225,7 +271,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 border-t border-slate-800/80 backdrop-blur-xl flex items-center justify-around py-2 px-1 shadow-2xl">
         <button
           onClick={() => handleNavClick('quiz')}
-          className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all ${
+          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
             activeTab === 'quiz' ? 'text-purple-400 font-bold' : 'text-slate-500 hover:text-slate-300'
           }`}
         >
@@ -235,7 +281,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
 
         <button
           onClick={() => handleNavClick('denemeler')}
-          className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all ${
+          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
             activeTab === 'denemeler' ? 'text-amber-400 font-bold' : 'text-slate-500 hover:text-slate-300'
           }`}
         >
@@ -245,12 +291,32 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
 
         <button
           onClick={() => handleNavClick('dersler')}
-          className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all ${
+          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
             activeTab === 'dersler' ? 'text-indigo-400 font-bold' : 'text-slate-500 hover:text-slate-300'
           }`}
         >
           <GraduationCap className="w-5 h-5" />
           <span className="text-[10px]">Dersler</span>
+        </button>
+
+        <button
+          onClick={() => handleNavClick('aliskanliklar')}
+          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
+            activeTab === 'aliskanliklar' ? 'text-amber-400 font-bold' : 'text-slate-500 hover:text-slate-300'
+          }`}
+        >
+          <Flame className="w-5 h-5" />
+          <span className="text-[10px]">Alışkanlık</span>
+        </button>
+
+        <button
+          onClick={() => handleNavClick('todolist')}
+          className={`flex flex-col items-center gap-1 py-1 px-2 rounded-xl transition-all ${
+            activeTab === 'todolist' ? 'text-emerald-400 font-bold' : 'text-slate-500 hover:text-slate-300'
+          }`}
+        >
+          <CheckSquare className="w-5 h-5" />
+          <span className="text-[10px]">Todo</span>
         </button>
       </nav>
     </>
