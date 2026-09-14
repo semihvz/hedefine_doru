@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
+import { useAuth } from './context/AuthContext';
 import { AuthModal } from './components/AuthModal';
+import { AuthGuardWall } from './components/AuthGuardWall';
 import { SessionsView } from './components/SessionsView';
 import { AdminPanel } from './components/AdminPanel';
 import { QuestionBankView } from './components/QuestionBankView';
@@ -13,6 +15,7 @@ import { ToastContainer } from './components/ToastContainer';
 import { AskAiSelectionTooltip } from './components/AskAiSelectionTooltip';
 
 const MainContent: React.FC = () => {
+  const { user } = useAuth();
   const [activeTab, setActiveTab] = useState<string>('quiz');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
@@ -25,24 +28,33 @@ const MainContent: React.FC = () => {
       />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 pb-20 md:pb-8">
-        {activeTab === 'quiz' && (
-          <QuestionBankView onOpenAuthModal={() => setIsAuthModalOpen(true)} />
-        )}
-        {activeTab === 'denemeler' && (
-          <DenemelerView
+        {!user ? (
+          <AuthGuardWall
             onOpenAuthModal={() => setIsAuthModalOpen(true)}
+            onLoginSuccess={() => window.location.reload()}
           />
+        ) : (
+          <>
+            {activeTab === 'quiz' && (
+              <QuestionBankView onOpenAuthModal={() => setIsAuthModalOpen(true)} />
+            )}
+            {activeTab === 'denemeler' && (
+              <DenemelerView
+                onOpenAuthModal={() => setIsAuthModalOpen(true)}
+              />
+            )}
+            {activeTab === 'dersler' && (
+              <DerslerView
+                onNavigateToQuiz={(_category) => setActiveTab('quiz')}
+                onOpenAuthModal={() => setIsAuthModalOpen(true)}
+              />
+            )}
+            {activeTab === 'aliskanliklar' && <HabitsTrackerView />}
+            {activeTab === 'todolist' && <TodoListView />}
+            {activeTab === 'sessions' && <SessionsView />}
+            {activeTab === 'admin' && <AdminPanel />}
+          </>
         )}
-        {activeTab === 'dersler' && (
-          <DerslerView
-            onNavigateToQuiz={(_category) => setActiveTab('quiz')}
-            onOpenAuthModal={() => setIsAuthModalOpen(true)}
-          />
-        )}
-        {activeTab === 'aliskanliklar' && <HabitsTrackerView />}
-        {activeTab === 'todolist' && <TodoListView />}
-        {activeTab === 'sessions' && <SessionsView />}
-        {activeTab === 'admin' && <AdminPanel />}
       </main>
 
       <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">

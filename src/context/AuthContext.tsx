@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import type { User, Session, AuditLog, AuthResponse } from '../types/auth';
 import { apiUrl } from '../utils/api';
+import { loadActiveUser, logoutUserAccount } from '../services/storageService';
 
 interface Toast {
   id: string;
@@ -94,13 +95,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const meData = await meRes.json();
         if (meData.success && meData.user) {
           setUser(meData.user);
+          setIsLoading(false);
+          return;
         }
       }
     } catch (error) {
       console.log('Silent refresh failed or no active session');
-    } finally {
-      setIsLoading(false);
     }
+
+    // Check local active user session (demo / client login)
+    const localUser = loadActiveUser();
+    if (localUser) {
+      setUser({
+        id: localUser.id || 'usr_demo',
+        email: localUser.email || 'kullanici@hedefine.ai',
+        full_name: localUser.name || 'Öğrenci Kullanıcı',
+        role: 'USER',
+        is_active: 1,
+        created_at: new Date().toISOString()
+      });
+    } else {
+      setUser(null);
+    }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
@@ -166,6 +183,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (e) {
       console.error(e);
     } finally {
+      logoutUserAccount();
       setUser(null);
       setAccessToken(null);
       addToast('Oturum kapatıldı.', 'info');
