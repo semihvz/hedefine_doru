@@ -49,9 +49,9 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
 
   const getDifficultyBadge = (diff: string) => {
     switch (diff) {
-      case 'beginner': return { label: 'Beginner', class: 'diff-beginner' };
-      case 'intermediate': return { label: 'Intermediate', class: 'diff-intermediate' };
-      case 'advanced': return { label: 'Advanced', class: 'diff-advanced' };
+      case 'beginner': return { label: 'Temel Seviye', class: 'diff-beginner' };
+      case 'intermediate': return { label: 'Orta Seviye', class: 'diff-intermediate' };
+      case 'advanced': return { label: 'İleri Seviye (ÖSYM)', class: 'diff-advanced' };
       default: return { label: diff, class: '' };
     }
   };
@@ -68,7 +68,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         </span>
 
         {/* Live Per-Question Timer Badge */}
-        <span className={`question-timer-badge ${answeredOptionId !== null ? 'stopped' : 'running'}`} title="Solve Timer">
+        <span className={`question-timer-badge ${answeredOptionId !== null ? 'stopped' : 'running'}`} title="Çözüm Süresi">
           <Clock className="timer-icon" />
           <span>{formatTimer(elapsedSeconds)}</span>
         </span>
@@ -76,7 +76,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
         <span className={`diff-badge ${diffInfo.class}`}>
           {diffInfo.label}
         </span>
-        <span className="choice-count-badge">5 Options</span>
+        <span className="choice-count-badge">5 Şıklı ÖSYM Formatı</span>
       </div>
 
       {/* Question Prompt */}
@@ -145,7 +145,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({
             disabled={!selectedId}
             onClick={handleSubmit}
           >
-            <span>Submit Answer & Read Explanation</span>
+            <span>Cevabı Onayla & Çözümü Göster</span>
             <ArrowRight className="btn-icon" />
           </button>
         </div>
