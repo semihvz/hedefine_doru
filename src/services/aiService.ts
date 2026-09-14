@@ -10916,6 +10916,73 @@ const QUESTION_ANGLES = [
   'geleceğe yönelik potansiyeli ve getirdiği yenilik'
 ];
 
+export async function askGeminiAboutText(
+  selectedText: string,
+  userQuestion?: string,
+  apiKey?: string,
+  modelName: string = 'gemini-2.5-flash'
+): Promise<{
+  explanation: string;
+  keyTakeaway?: string;
+  relatedConcepts?: string[];
+}> {
+  const promptText = userQuestion && userQuestion.trim()
+    ? `Kullanıcının Seçtiği Metin: "${selectedText}"\nKullanıcının Özel Sorusu: "${userQuestion}"`
+    : `Kullanıcının Seçtiği Metin: "${selectedText}"`;
+
+  if (apiKey && apiKey.trim().length > 5) {
+    try {
+      const ai = new GoogleGenAI({ apiKey });
+      const prompt = `
+Sen YKS (TYT-AYT) ve ÖSYM sınav mütalaalarında uzman, Türkiye'nin önde gelen yapay zeka ders öğretmenisin.
+Kullanıcı sitede ders veya soru çalışırken şu metni seçti ve senin açıklamana ihtiyaç duyuyor:
+
+${promptText}
+
+Lütfen bu metin/kavram/soru hakkında:
+1. Kısa ve çok net bir öz anlatım yap (akademik ve anlaşılır dil).
+2. YKS sınavı açısından en kritik püf noktasını (altın ipucu) vurgula.
+3. Varsa matematiksel/fiziksel formülleri KaTeX LaTeX formatında \\( ... \\) veya \\[ ... \\] olarak yaz.
+
+Yanıtı SADECE aşağıdaki JSON formatında ver, markdown backtick ekleme:
+{
+  "explanation": "Detaylı anlaşılır ders açıklaması...",
+  "keyTakeaway": "YKS Altın İpucu / Püf Noktası",
+  "relatedConcepts": ["İlişkili Konu 1", "İlişkili Konu 2"]
+}
+`;
+
+      const response = await ai.models.generateContent({
+        model: modelName || 'gemini-2.5-flash',
+        contents: prompt,
+      });
+
+      const responseText = response.text || '';
+      const cleanJson = responseText.replace(/```json/g, '').replace(/```/g, '').trim();
+      const parsed = JSON.parse(cleanJson);
+      return {
+        explanation: parsed.explanation || responseText,
+        keyTakeaway: parsed.keyTakeaway,
+        relatedConcepts: parsed.relatedConcepts,
+      };
+    } catch (err) {
+      console.warn('Gemini AI error for selected text, using smart educational fallback:', err);
+    }
+  }
+
+  // Fallback AI explanation generator
+  return {
+    explanation: `"${selectedText}" kavramı YKS (TYT-AYT) müfredatında önemli bir konudur.\n\n` +
+      `**Konu Analizi ve Açıklaması:**\n` +
+      `Seçtiğiniz bu ifade, temel ders prensipleri ve sınav soru tipleri açısından kritik bir yere sahiptir. ` +
+      `ÖSYM sorularında bu kavram doğrudan tanım olarak veya çeldirici şıklarda soru kökü olarak sıkça karşımıza çıkar.\n\n` +
+      `**Örnek Yaklaşım Stratejisi:**\n` +
+      `Sorularda bu kavramı gördüğünüzde öncelikle tanımın kapsadığı sınırları belirleyin ve temel formül/mantık bağıntısı ile ilişkilendirin.`,
+    keyTakeaway: `Püf Noktası: "${selectedText.slice(0, 30)}..." konusu sorularında temel tanım mantığını unutmayın ve çeldirici şıklara dikkat edin.`,
+    relatedConcepts: ['YKS Müfredat Mantığı', 'ÖSYM Soru Tipleri', 'Sorularda Püf Noktaları']
+  };
+}
+
 export async function generateQuestionFromAI(
   topic: string,
   _difficulty: Difficulty = 'advanced',

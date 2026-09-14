@@ -8,6 +8,7 @@ import { QuestionBankView } from './components/QuestionBankView';
 import { DerslerView } from './components/DerslerView';
 import { DenemelerView } from './components/DenemelerView';
 import { ToastContainer } from './components/ToastContainer';
+import { AskAiSelectionTooltip } from './components/AskAiSelectionTooltip';
 
 const MainContent: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('quiz');
@@ -50,6 +51,7 @@ const MainContent: React.FC = () => {
       />
 
       <ToastContainer />
+      <AskAiSelectionTooltip />
     </div>
   );
 };
