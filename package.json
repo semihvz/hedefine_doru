@@ -10,7 +10,7 @@
     "test:security": "tsx server/src/test_security.ts",
     "test:security:all": "tsx server/src/test_security_suite.ts",
     "build": "tsc -b && vite build",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && cp dist/index.html dist/404.html",
     "deploy": "gh-pages -d dist",
     "lint": "oxlint",
     "preview": "vite preview"
