@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { Navbar } from './components/Navbar';
 import { AuthModal } from './components/AuthModal';
-import { DashboardView } from './components/DashboardView';
 import { SessionsView } from './components/SessionsView';
 import { AdminPanel } from './components/AdminPanel';
-import { ArchitectureView } from './components/ArchitectureView';
 import { QuestionBankView } from './components/QuestionBankView';
 import { DerslerView } from './components/DerslerView';
 import { DenemelerView } from './components/DenemelerView';
 import { ToastContainer } from './components/ToastContainer';
 
 const MainContent: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const [activeTab, setActiveTab] = useState<string>('quiz');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
 
   return (
@@ -24,9 +22,6 @@ const MainContent: React.FC = () => {
       />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8 pb-20 md:pb-8">
-        {activeTab === 'dashboard' && (
-          <DashboardView onOpenAuthModal={() => setIsAuthModalOpen(true)} />
-        )}
         {activeTab === 'quiz' && (
           <QuestionBankView onOpenAuthModal={() => setIsAuthModalOpen(true)} />
         )}
@@ -43,7 +38,6 @@ const MainContent: React.FC = () => {
         )}
         {activeTab === 'sessions' && <SessionsView />}
         {activeTab === 'admin' && <AdminPanel />}
-        {activeTab === 'architecture' && <ArchitectureView />}
       </main>
 
       <footer className="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500">

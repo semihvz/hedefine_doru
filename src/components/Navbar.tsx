@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
-  LayoutDashboard, 
   MonitorSmartphone, 
   ShieldAlert, 
-  Cpu, 
   LogOut, 
   KeyRound, 
   BookOpen, 
@@ -36,7 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
           
           {/* Brand Logo */}
           <div 
-            onClick={() => handleNavClick('dashboard')}
+            onClick={() => handleNavClick('quiz')}
             className="flex items-center gap-2.5 sm:gap-3 cursor-pointer group"
           >
             <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-tr from-amber-500 via-indigo-600 to-purple-600 p-0.5 shadow-lg shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
@@ -54,18 +52,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
 
           {/* Desktop Navigation Items */}
           <nav className="hidden md:flex items-center gap-1.5 p-1.5 rounded-2xl bg-slate-900/60 border border-slate-800/50 backdrop-blur-md">
-            <button
-              onClick={() => handleNavClick('dashboard')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                activeTab === 'dashboard'
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <LayoutDashboard className="w-4 h-4" />
-              <span>Genel Bakış</span>
-            </button>
-
             <button
               onClick={() => handleNavClick('quiz')}
               className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
@@ -129,18 +115,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
                 <span>Yönetici Paneli</span>
               </button>
             )}
-
-            <button
-              onClick={() => handleNavClick('architecture')}
-              className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
-                activeTab === 'architecture'
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md shadow-emerald-500/25'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <Cpu className="w-4 h-4 text-emerald-400" />
-              <span>Sistem Mimarisi</span>
-            </button>
           </nav>
 
           {/* Right Action / Auth Button */}
@@ -190,16 +164,6 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
         {/* Mobile Slide-Down Drawer Overlay */}
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-slate-800 bg-slate-950/98 p-4 space-y-2 animate-fade-in shadow-2xl">
-            <button
-              onClick={() => handleNavClick('dashboard')}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                activeTab === 'dashboard' ? 'bg-indigo-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-              }`}
-            >
-              <LayoutDashboard className="w-4 h-4" />
-              <span>Genel Bakış</span>
-            </button>
-
             <button
               onClick={() => handleNavClick('quiz')}
               className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
@@ -253,32 +217,12 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
                 <span>Yönetici Paneli</span>
               </button>
             )}
-
-            <button
-              onClick={() => handleNavClick('architecture')}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl text-xs font-bold text-left transition-all ${
-                activeTab === 'architecture' ? 'bg-emerald-600 text-white' : 'text-slate-300 bg-slate-900/80 border border-slate-800'
-              }`}
-            >
-              <Cpu className="w-4 h-4 text-emerald-400" />
-              <span>Sistem Mimarisi</span>
-            </button>
           </div>
         )}
       </header>
 
       {/* Sticky Bottom Mobile Navigation Bar (Smartphones) */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-slate-950/95 border-t border-slate-800/80 backdrop-blur-xl flex items-center justify-around py-2 px-1 shadow-2xl">
-        <button
-          onClick={() => handleNavClick('dashboard')}
-          className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all ${
-            activeTab === 'dashboard' ? 'text-indigo-400 font-bold' : 'text-slate-500 hover:text-slate-300'
-          }`}
-        >
-          <LayoutDashboard className="w-5 h-5" />
-          <span className="text-[10px]">Genel</span>
-        </button>
-
         <button
           onClick={() => handleNavClick('quiz')}
           className={`flex flex-col items-center gap-1 py-1 px-3 rounded-xl transition-all ${
