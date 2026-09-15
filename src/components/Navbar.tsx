@@ -8,6 +8,7 @@ import {
   Target,
   Flame,
   CheckSquare,
+  RotateCcw,
   MonitorSmartphone,
   ShieldAlert,
   Menu,
@@ -32,6 +33,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenA
   const navItems = [
     { id: 'quiz', label: 'Soru Bankası', icon: BookOpen },
     { id: 'denemeler', label: 'Denemeler', icon: Target },
+    { id: 'tekrar', label: 'Tekrar Alanı', icon: RotateCcw },
     { id: 'dersler', label: 'Ders Kataloğu', icon: GraduationCap },
     { id: 'aliskanliklar', label: 'Alışkanlıklar', icon: Flame },
     { id: 'todolist', label: 'Görev Planlayıcı', icon: CheckSquare },

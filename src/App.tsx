@@ -9,6 +9,7 @@ import { AdminPanel } from './components/AdminPanel';
 import { QuestionBankView } from './components/QuestionBankView';
 import { DerslerView } from './components/DerslerView';
 import { DenemelerView } from './components/DenemelerView';
+import { TekrarView } from './components/TekrarView';
 import { HabitsTrackerView } from './components/HabitsTrackerView';
 import { TodoListView } from './components/TodoListView';
 import { ToastContainer } from './components/ToastContainer';
@@ -43,6 +44,7 @@ const MainContent: React.FC = () => {
                 onOpenAuthModal={() => setIsAuthModalOpen(true)}
               />
             )}
+            {activeTab === 'tekrar' && <TekrarView />}
             {activeTab === 'dersler' && (
               <DerslerView
                 onNavigateToQuiz={(_category) => setActiveTab('quiz')}
